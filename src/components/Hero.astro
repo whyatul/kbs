@@ -1,0 +1,254 @@
+---
+const heroImages = [
+    { 
+        src: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80",
+        alt: "Construction site",
+        position: "top-[15%] left-[5%]",
+        size: "w-40 h-52 md:w-56 md:h-72 lg:w-64 lg:h-80",
+        delay: "0s",
+        rotation: "-6deg"
+    },
+    { 
+        src: "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80",
+        alt: "Event celebration",
+        position: "top-[8%] right-[8%]",
+        size: "w-44 h-36 md:w-60 md:h-48 lg:w-72 lg:h-56",
+        delay: "0.1s",
+        rotation: "4deg"
+    },
+    { 
+        src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80",
+        alt: "Modern interior",
+        position: "top-[35%] left-[2%]",
+        size: "w-36 h-44 md:w-48 md:h-60 lg:w-56 lg:h-72",
+        delay: "0.2s",
+        rotation: "3deg"
+    },
+    { 
+        src: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&q=80",
+        alt: "Workers team",
+        position: "top-[30%] right-[3%]",
+        size: "w-40 h-56 md:w-52 md:h-68 lg:w-60 lg:h-80",
+        delay: "0.15s",
+        rotation: "-5deg"
+    },
+    { 
+        src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+        alt: "Cleaning service",
+        position: "bottom-[20%] left-[6%]",
+        size: "w-36 h-40 md:w-48 md:h-56 lg:w-56 lg:h-68",
+        delay: "0.25s",
+        rotation: "5deg"
+    },
+    { 
+        src: "https://images.unsplash.com/photo-1513623935135-c896b59073c1?w=600&q=80",
+        alt: "Trade show",
+        position: "bottom-[15%] right-[5%]",
+        size: "w-44 h-36 md:w-60 md:h-48 lg:w-72 lg:h-56",
+        delay: "0.3s",
+        rotation: "-3deg"
+    },
+];
+
+const services = [
+    "Civil Construction",
+    "Event Management", 
+    "Interior Design",
+    "Manpower Supply",
+    "Housekeeping",
+    "Custom Solutions"
+];
+---
+
+<section
+    class="min-h-screen flex flex-col items-center justify-center relative overflow-hidden"
+    id="hero"
+>
+    <!-- Background -->
+    <div id="hero-background" class="absolute inset-0 z-0">
+        <!-- Gradient orbs -->
+        <div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-orange-500/10 rounded-full blur-[150px] animate-pulse-slow"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-500/8 rounded-full blur-[120px] animate-pulse-slow" style="animation-delay: 2s;"></div>
+        
+        <!-- Subtle grid -->
+        <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:80px_80px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,black,transparent)]"></div>
+        
+        <!-- Noise texture -->
+        <div class="absolute inset-0 opacity-[0.015] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==')]"></div>
+    </div>
+
+    <!-- Floating Images -->
+    <div class="absolute inset-0 z-[1] pointer-events-none hidden md:block">
+        {heroImages.map((image, index) => (
+            <div 
+                class={`hero-image absolute ${image.position} ${image.size} rounded-2xl overflow-hidden shadow-2xl opacity-0 animate-float-in`}
+                style={`animation-delay: ${image.delay}; transform: rotate(${image.rotation});`}
+                data-parallax
+                data-speed={(index % 3) + 1}
+            >
+                <img 
+                    src={image.src} 
+                    alt={image.alt}
+                    class="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                    loading="lazy"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+                <div class="absolute inset-0 border border-white/10 rounded-2xl"></div>
+            </div>
+        ))}
+    </div>
+
+    <!-- Main Content -->
+    <div class="relative z-10 text-center px-6 max-w-6xl mx-auto">
+        <!-- Top Label -->
+        <div class="mb-8 animate-fadeInUp opacity-0" style="animation-delay: 0.2s;">
+            <span class="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full text-sm text-zinc-400 backdrop-blur-sm">
+                <span class="w-2 h-2 bg-orange-500 rounded-full animate-pulse"></span>
+                Trusted by 50+ businesses
+            </span>
+        </div>
+
+        <!-- Main Heading -->
+        <h1 class="mb-6 animate-fadeInUp opacity-0" style="animation-delay: 0.4s;">
+            <span class="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight leading-[0.9] text-white">
+                ONE PARTNER
+            </span>
+            <span class="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight leading-[0.9]  mt-8">
+                <span class="font-peace text-gradient">Every Solution</span>
+            </span>
+        </h1>
+        <!-- Service Tags -->
+        <div class="flex flex-wrap justify-center gap-3 mb-12 animate-fadeInUp opacity-0" style="animation-delay: 0.8s; ">
+            {services.map((service, index) => (
+                <span 
+                    class="service-tag px-4 py-2 bg-zinc-900/80 border border-zinc-800 rounded-full text-sm text-zinc-300 cursor-default transition-all duration-300 hover:bg-orange-500/20 hover:border-orange-500/50 hover:text-orange-400"
+                    style={`animation-delay: ${0.8 + index * 0.1}s;`}
+                >
+                    {service}
+                </span>
+            ))}
+        </div>
+    </div>
+</section>
+
+<style>
+    @keyframes float-in {
+        0% {
+            opacity: 0;
+            transform: translateY(40px) rotate(var(--rotation, 0deg)) scale(0.8);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0) rotate(var(--rotation, 0deg)) scale(1);
+        }
+    }
+    
+    .animate-float-in {
+        animation: float-in 0.8s ease-out forwards;
+    }
+    
+    @keyframes pulse-slow {
+        0%, 100% { opacity: 0.5; transform: scale(1); }
+        50% { opacity: 0.8; transform: scale(1.1); }
+    }
+    
+    .animate-pulse-slow {
+        animation: pulse-slow 8s ease-in-out infinite;
+    }
+    
+    @keyframes scroll-mouse {
+        0% { transform: translateY(0); opacity: 1; }
+        50% { transform: translateY(8px); opacity: 0.5; }
+        100% { transform: translateY(0); opacity: 1; }
+    }
+    
+    .animate-scroll-mouse {
+        animation: scroll-mouse 1.5s ease-in-out infinite;
+    }
+    
+    .hero-image {
+        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+        pointer-events: auto;
+    }
+    
+    .hero-image:hover {
+        z-index: 50 !important;
+        transform: rotate(0deg) scale(1.08) !important;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(249, 115, 22, 0.2);
+    }
+    
+    .service-tag {
+        backdrop-filter: blur(8px);
+    }
+</style>
+
+<script>
+    // Parallax effect for floating images
+    const parallaxImages = document.querySelectorAll('[data-parallax]');
+    
+    if (parallaxImages.length > 0) {
+        let ticking = false;
+        
+        const updateParallax = () => {
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            
+            parallaxImages.forEach((image) => {
+                const imgEl = image as HTMLElement;
+                const speed = parseFloat(imgEl.dataset.speed || '1');
+                const rect = imgEl.getBoundingClientRect();
+                
+                // Only animate if in viewport
+                if (rect.top < windowHeight && rect.bottom > 0) {
+                    const yOffset = scrollY * speed * 0.1;
+                    const currentRotation = imgEl.style.transform.match(/rotate\(([^)]+)\)/)?.[1] || '0deg';
+                    imgEl.style.transform = `translateY(${yOffset}px) rotate(${currentRotation})`;
+                }
+            });
+            
+            ticking = false;
+        };
+        
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }, { passive: true });
+    }
+    
+    // Mouse move effect for images
+    const heroSection = document.getElementById('hero');
+    const floatingImages = document.querySelectorAll('.hero-image');
+    
+    if (heroSection && floatingImages.length > 0) {
+        heroSection.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            
+            const moveX = (clientX - centerX) / centerX;
+            const moveY = (clientY - centerY) / centerY;
+            
+            floatingImages.forEach((image, index) => {
+                const imgEl = image as HTMLElement;
+                const speed = ((index % 3) + 1) * 8;
+                const x = moveX * speed;
+                const y = moveY * speed;
+                const currentRotation = imgEl.style.transform.match(/rotate\(([^)]+)\)/)?.[1] || '0deg';
+                
+                if (!imgEl.matches(':hover')) {
+                    imgEl.style.transform = `translate(${x}px, ${y}px) rotate(${currentRotation})`;
+                }
+            });
+        });
+        
+        heroSection.addEventListener('mouseleave', () => {
+            floatingImages.forEach((image) => {
+                const imgEl = image as HTMLElement;
+                const currentRotation = imgEl.style.transform.match(/rotate\(([^)]+)\)/)?.[1] || '0deg';
+                imgEl.style.transform = `rotate(${currentRotation})`;
+            });
+        });
+    }
+</script>
