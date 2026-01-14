@@ -1,0 +1,284 @@
+---
+import logoImage from "../assets/logo/gold_log_KBS.png";
+
+interface Props {
+    id?: string;
+}
+
+const { id = "header" } = Astro.props;
+---
+
+<header
+    class="fixed top-0 left-0 right-0 z-[1000] py-5 transition-all duration-500 bg-transparent"
+    id={id}
+>
+    <div
+        class="max-w-[1400px] mx-auto px-5 md:px-10 lg:px-[60px] flex items-center justify-between gap-10"
+    >
+        <!-- Logo -->
+        <a
+            href="/"
+            class="flex items-center hover:opacity-80 transition-opacity"
+        >
+               <img 
+                src={logoImage.src} 
+                alt="Kartik Business Solutions" 
+                class="h-12 md:h-14 mr-4 w-auto"
+            />
+            <span
+                class="font-primary text-3xl font-bold text-white flex flex-col leading-tight"
+            >
+                Kartik Business Solutions
+                
+            </span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden lg:flex items-center">
+            <ul class="flex items-center gap-1">
+                <li>
+                    <a
+                        href="#about"
+                        class="nav-link group relative px-4 py-2.5 text-sm font-medium text-zinc-400 hover:text-white transition-all duration-300"
+                    >
+                        <span class="relative z-10">About</span>
+                        <span class="absolute inset-0 bg-white/5 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#services"
+                        class="nav-link group relative px-4 py-2.5 text-sm font-medium text-zinc-400 hover:text-white transition-all duration-300"
+                    >
+                        <span class="relative z-10">Services</span>
+                        <span class="absolute inset-0 bg-white/5 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#gallery"
+                        class="nav-link group relative px-4 py-2.5 text-sm font-medium text-zinc-400 hover:text-white transition-all duration-300"
+                    >
+                        <span class="relative z-10">Gallery</span>
+                        <span class="absolute inset-0 bg-white/5 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    </a>
+                </li>
+
+                <li>
+                    <a
+                        href="#faq"
+                        class="nav-link group relative px-4 py-2.5 text-sm font-medium text-zinc-400 hover:text-white transition-all duration-300"
+                    >
+                        <span class="relative z-10">FAQ</span>
+                        <span class="absolute inset-0 bg-white/5 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#contact"
+                        class="nav-link group relative px-4 py-2.5 text-sm font-medium text-zinc-400 hover:text-white transition-all duration-300"
+                    >
+                        <span class="relative z-10">Contact</span>
+                        <span class="absolute inset-0 bg-white/5 rounded-lg scale-0 group-hover:scale-100 transition-transform duration-300"></span>
+                        <span class="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-orange-500 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Mobile Menu Button -->
+        <button
+            class="lg:hidden flex items-center justify-center w-11 h-11 z-[1001]"
+            id="mobile-menu-btn"
+            aria-label="Toggle menu"
+        >
+            <span
+                class="hamburger w-6 h-[18px] relative flex flex-col justify-between"
+            >
+                <span
+                    class="block w-full h-0.5 bg-white rounded transition-all origin-center"
+                ></span>
+                <span
+                    class="block w-full h-0.5 bg-white rounded transition-all origin-center"
+                ></span>
+                <span
+                    class="block w-full h-0.5 bg-white rounded transition-all origin-center"
+                ></span>
+            </span>
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div
+        class="fixed inset-0 bg-[rgba(10,10,15,0.98)] backdrop-blur-[20px] hidden items-center justify-center opacity-0 invisible transition-all duration-500"
+        id="mobile-menu"
+    >
+        <nav>
+            <ul class="flex flex-col items-center gap-6">
+                <li>
+                    <a
+                        href="#about"
+                        class="mobile-nav-link group relative font-primary text-3xl font-semibold text-zinc-400 hover:text-white transition-all duration-300 p-2.5"
+                    >
+                        <span class="relative">About</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#services"
+                        class="mobile-nav-link group relative font-primary text-3xl font-semibold text-zinc-400 hover:text-white transition-all duration-300 p-2.5"
+                    >
+                        <span class="relative">Services</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#gallery"
+                        class="mobile-nav-link group relative font-primary text-3xl font-semibold text-zinc-400 hover:text-white transition-all duration-300 p-2.5"
+                    >
+                        <span class="relative">Gallery</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#values"
+                        class="mobile-nav-link group relative font-primary text-3xl font-semibold text-zinc-400 hover:text-white transition-all duration-300 p-2.5"
+                    >
+                        <span class="relative">Values</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#stats"
+                        class="mobile-nav-link group relative font-primary text-3xl font-semibold text-zinc-400 hover:text-white transition-all duration-300 p-2.5"
+                    >
+                        <span class="relative">Stats</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#faq"
+                        class="mobile-nav-link group relative font-primary text-3xl font-semibold text-zinc-400 hover:text-white transition-all duration-300 p-2.5"
+                    >
+                        <span class="relative">FAQ</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </li>
+                <li>
+                    <a
+                        href="#contact"
+                        class="mobile-nav-link group relative font-primary text-3xl font-semibold text-zinc-400 hover:text-white transition-all duration-300 p-2.5"
+                    >
+                        <span class="relative">Contact</span>
+                        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-orange-400 group-hover:w-full transition-all duration-300"></span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<script>
+    // Header scroll behavior
+    let lastScrollY = window.scrollY;
+    const header = document.getElementById("header") as HTMLElement;
+    let ticking = false;
+
+    function updateHeader() {
+        const currentScrollY = window.scrollY;
+
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            header.style.transform = "translateY(-100%)";
+        } else {
+            header.style.transform = "translateY(0)";
+        }
+
+        if (currentScrollY > 50) {
+            header.classList.add(
+                "bg-[rgba(10,10,15,0.9)]",
+                "backdrop-blur-[20px]",
+                "border-b",
+                "border-white/[0.08]",
+                "py-4",
+            );
+            header.classList.remove("py-5", "bg-transparent");
+        } else {
+            header.classList.remove(
+                "bg-[rgba(10,10,15,0.9)]",
+                "backdrop-blur-[20px]",
+                "border-b",
+                "border-white/[0.08]",
+                "py-4",
+            );
+            header.classList.add("py-5", "bg-transparent");
+        }
+
+        lastScrollY = currentScrollY;
+        ticking = false;
+    }
+
+    window.addEventListener("scroll", () => {
+        if (!ticking) {
+            window.requestAnimationFrame(updateHeader);
+            ticking = true;
+        }
+    });
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const hamburgerSpans = mobileMenuBtn?.querySelectorAll(".hamburger span");
+
+    mobileMenuBtn?.addEventListener("click", () => {
+        const isActive = mobileMenu?.classList.contains("opacity-100");
+
+        if (isActive) {
+            mobileMenu?.classList.remove("opacity-100", "visible", "flex");
+            mobileMenu?.classList.add("opacity-0", "invisible", "hidden");
+            document.body.classList.remove("menu-open");
+            // Reset hamburger
+            if (hamburgerSpans) {
+                hamburgerSpans[0].style.transform = "";
+                hamburgerSpans[1].style.opacity = "";
+                hamburgerSpans[2].style.transform = "";
+            }
+        } else {
+            mobileMenu?.classList.add("opacity-100", "visible", "flex");
+            mobileMenu?.classList.remove("opacity-0", "invisible", "hidden");
+            document.body.classList.add("menu-open");
+            // Animate hamburger to X
+            if (hamburgerSpans) {
+                hamburgerSpans[0].style.transform =
+                    "rotate(45deg) translate(5px, 5px)";
+                hamburgerSpans[1].style.opacity = "0";
+                hamburgerSpans[2].style.transform =
+                    "rotate(-45deg) translate(5px, -5px)";
+            }
+        }
+    });
+
+    // Close mobile menu when clicking a link
+    const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+    mobileNavLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            mobileMenu?.classList.remove("opacity-100", "visible", "flex");
+            mobileMenu?.classList.add("opacity-0", "invisible", "hidden");
+            document.body.classList.remove("menu-open");
+            // Reset hamburger
+            if (hamburgerSpans) {
+                hamburgerSpans[0].style.transform = "";
+                hamburgerSpans[1].style.opacity = "";
+                hamburgerSpans[2].style.transform = "";
+            }
+        });
+    });
+</script>
