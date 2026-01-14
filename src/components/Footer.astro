@@ -1,0 +1,403 @@
+---
+const currentYear = new Date().getFullYear();
+
+const navLinks = [
+    { label: "About", href: "#about" },
+    { label: "Services", href: "#services" },
+    { label: "Projects", href: "#projects" },
+    { label: "FAQ", href: "#faq" },
+    { label: "Contact", href: "#contact" },
+];
+
+const contact = {
+    phone: "9217270700",
+    email: "infokartikbusinesssolutions@gmail.com",
+    whatsapp: "9217270700",
+};
+---
+
+<footer class="relative bg-primary overflow-hidden" id="footer">
+    <!-- Animated Background -->
+    <div class="footer-bg absolute inset-0 pointer-events-none">
+        <!-- Gradient orb -->
+        <div
+            class="footer-orb absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[radial-gradient(ellipse,rgba(249,115,22,0.1),transparent_70%)]"
+        >
+        </div>
+        <!-- Animated lines -->
+        <div class="absolute inset-0 opacity-30">
+            <div
+                class="footer-line absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500/50 to-transparent"
+            >
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-[1400px] mx-auto px-6 md:px-3 lg:px-16 relative z-10">
+        <!-- Main Content - Minimal Layout -->
+        <div class="py-8 md:py-10">
+                 <!-- 24/7 Badge -->
+            <div class="flex justify-center mb-12">
+                <div
+                    class="availability-badge inline-flex items-center gap-3 px-6 py-3 bg-white/[0.03] border border-white/[0.08] rounded-full"
+                >
+                    <span class="pulse-dot relative w-2 h-2">
+                        <span class="absolute inset-0 bg-green-500 rounded-full"
+                        ></span>
+                        <span
+                            class="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"
+                        ></span>
+                    </span>
+                    <span class="text-sm text-zinc-400 uppercase tracking-widest">
+                        Available 24×7
+                    </span>
+                </div>
+            </div>
+            <!-- Large Brand Text -->
+            <div class="text-center mb-16" data-animate="fade-up">
+                
+                <h2
+                    class="footer-brand text-9xl sm:text-5xl md:text-7xl lg:text-9xl font-black tracking-tight text-white mb-4">
+                    <span class="block text-center">KARTIK</span>
+                    <span class="block text-center">BUSINESS</span>
+                    <span class="block text-center">SOLUTIONS</span>
+                </h2>
+            </div>
+
+            <!-- Minimal Navigation -->
+            <nav
+                class="flex flex-wrap items-center justify-center gap-6 md:gap-10 mb-16"
+            >
+                {
+                    navLinks.map((link, index) => (
+                        <a
+                            href={link.href}
+                            class="nav-link relative text-sm md:text-base text-zinc-400 font-medium uppercase tracking-widest transition-colors hover:text-white group"
+                            data-index={index}
+                        >
+                            {link.label}
+                            <span class="nav-underline absolute -bottom-1 left-0 w-0 h-px bg-gradient-to-r from-orange-500 to-orange-400 transition-all duration-300 group-hover:w-full" />
+                        </a>
+                    ))
+                }
+            </nav>
+
+            <!-- Contact Row -->
+            <div
+                class="flex flex-wrap items-center justify-center gap-8 md:gap-12 mb-16"
+            >
+                <!-- Phone -->
+                <a
+                    href={`tel:${contact.phone}`}
+                    class="contact-item group flex items-center gap-3 text-zinc-400 hover:text-white transition-all"
+                >
+                    <span
+                        class="contact-icon w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/10 group-hover:bg-orange-500/20 group-hover:border-orange-500/30 transition-all"
+                    >
+                        <svg
+                            class="w-4 h-4"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                            ></path>
+                        </svg>
+                    </span>
+                    <span class="text-sm md:text-base">{contact.phone}</span>
+                </a>
+
+                <!-- Divider -->
+                <span class="hidden md:block w-px h-6 bg-white/10"></span>
+
+                <!-- Email -->
+                <a
+                    href={`mailto:${contact.email}`}
+                    class="contact-item group flex items-center gap-3 text-zinc-400 hover:text-white transition-all"
+                >
+                    <span
+                        class="contact-icon w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/10 group-hover:bg-orange-500/20 group-hover:border-orange-500/30 transition-all"
+                    >
+                        <svg
+                            class="w-4 h-4"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path
+                                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                            ></path>
+                            <path d="M22 6l-10 7L2 6"></path>
+                        </svg>
+                    </span>
+                    <span class="text-sm md:text-base hidden sm:inline"
+                        >Email Us</span
+                    >
+                </a>
+
+                <!-- Divider -->
+                <span class="hidden md:block w-px h-6 bg-white/10"></span>
+
+                <!-- WhatsApp -->
+                <a
+                    href={`https://wa.me/91${contact.whatsapp}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="contact-item group flex items-center gap-3 text-zinc-400 hover:text-[#25d366] transition-all"
+                >
+                    <span
+                        class="contact-icon w-10 h-10 flex items-center justify-center rounded-full bg-white/5 border border-white/10 group-hover:bg-[#25d366]/20 group-hover:border-[#25d366]/30 transition-all"
+                    >
+                        <svg
+                            class="w-4 h-4"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                        >
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
+                            ></path>
+                        </svg>
+                    </span>
+                    <span class="text-sm md:text-base">WhatsApp</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div
+            class="footer-bottom flex flex-col sm:flex-row items-center justify-between gap-4 py-6 border-t border-white/[0.05]"
+        >
+            <p class="text-xs text-zinc-600 tracking-wide">
+                © {currentYear} Kartik Business Solutions
+            </p>
+            <a href="https://verveux.studio" target="_blank" rel="noopener noreferrer" class="text-xs sm:text-sm text-gray-400 hover:text-accent transition-colors group flex items-center gap-2">
+          <span>Built by</span>
+          <span class="font-semibold text-white group-hover:text-accent">verveux.studio</span>
+          <svg class="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .footer-brand {
+        background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .nav-link {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .contact-icon svg {
+        transition: transform 0.3s ease;
+    }
+
+    .contact-item:hover .contact-icon svg {
+        transform: scale(1.1);
+    }
+
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0) translateX(-50%);
+        }
+        50% {
+            transform: translateY(-20px) translateX(-50%);
+        }
+    }
+
+    .footer-orb {
+        animation: float 8s ease-in-out infinite;
+    }
+</style>
+
+<script>
+    import anime from "animejs";
+
+    // Wait for DOM
+    document.addEventListener("DOMContentLoaded", () => {
+        const footer = document.getElementById("footer");
+        const backToTop = document.getElementById("back-to-top");
+        const navLinks = document.querySelectorAll(".nav-link");
+        const contactItems = document.querySelectorAll(".contact-item");
+        const footerBrand = document.querySelector(".footer-brand");
+        const footerTagline = document.querySelector(".footer-tagline");
+        const availabilityBadge = document.querySelector(".availability-badge");
+        const footerLine = document.querySelector(".footer-line");
+
+        // Intersection Observer for footer entrance animations
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        // Animate brand text
+                        anime({
+                            targets: footerBrand,
+                            opacity: [0, 1],
+                            translateY: [40, 0],
+                            duration: 800,
+                            easing: "easeOutExpo",
+                        });
+
+                        // Animate tagline
+                        anime({
+                            targets: footerTagline,
+                            opacity: [0, 1],
+                            translateY: [20, 0],
+                            duration: 800,
+                            delay: 200,
+                            easing: "easeOutExpo",
+                        });
+
+                        // Animate nav links with stagger
+                        anime({
+                            targets: navLinks,
+                            opacity: [0, 1],
+                            translateY: [20, 0],
+                            duration: 600,
+                            delay: anime.stagger(80, { start: 400 }),
+                            easing: "easeOutExpo",
+                        });
+
+                        // Animate contact items
+                        anime({
+                            targets: contactItems,
+                            opacity: [0, 1],
+                            translateY: [20, 0],
+                            scale: [0.9, 1],
+                            duration: 600,
+                            delay: anime.stagger(100, { start: 700 }),
+                            easing: "easeOutExpo",
+                        });
+
+                        // Animate availability badge
+                        anime({
+                            targets: availabilityBadge,
+                            opacity: [0, 1],
+                            scale: [0.8, 1],
+                            duration: 600,
+                            delay: 1000,
+                            easing: "easeOutElastic(1, 0.5)",
+                        });
+
+                        // Animate top line
+                        anime({
+                            targets: footerLine,
+                            scaleX: [0, 1],
+                            duration: 1200,
+                            delay: 300,
+                            easing: "easeInOutExpo",
+                        });
+
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.2 },
+        );
+
+        if (footer) {
+            // Set initial state
+            [footerBrand, footerTagline, ...navLinks, ...contactItems].forEach(
+                (el) => {
+                    if (el) (el as HTMLElement).style.opacity = "0";
+                },
+            );
+            if (availabilityBadge)
+                (availabilityBadge as HTMLElement).style.opacity = "0";
+            if (footerLine)
+                (footerLine as HTMLElement).style.transform = "scaleX(0)";
+
+            observer.observe(footer);
+        }
+
+        // Nav link hover animations
+        navLinks.forEach((link) => {
+            link.addEventListener("mouseenter", () => {
+                anime({
+                    targets: link,
+                    scale: 1.05,
+                    duration: 200,
+                    easing: "easeOutQuad",
+                });
+            });
+
+            link.addEventListener("mouseleave", () => {
+                anime({
+                    targets: link,
+                    scale: 1,
+                    duration: 200,
+                    easing: "easeOutQuad",
+                });
+            });
+        });
+
+        // Contact item hover animations
+        contactItems.forEach((item) => {
+            const icon = item.querySelector(".contact-icon");
+
+            item.addEventListener("mouseenter", () => {
+                anime({
+                    targets: icon,
+                    rotate: [0, 10, -10, 0],
+                    duration: 400,
+                    easing: "easeInOutQuad",
+                });
+            });
+        });
+
+        // Back to top button
+        if (backToTop) {
+            backToTop.addEventListener("click", () => {
+                // Animate scroll
+                anime({
+                    targets: { scrollY: window.scrollY },
+                    scrollY: 0,
+                    duration: 1000,
+                    easing: "easeInOutQuart",
+                    update: function (anim) {
+                        window.scrollTo(
+                            0,
+                            (anim.animations[0] as any).currentValue,
+                        );
+                    },
+                });
+            });
+
+            // Hover animation
+            backToTop.addEventListener("mouseenter", () => {
+                const arrow = backToTop.querySelector("svg");
+                anime({
+                    targets: arrow,
+                    translateY: [-2, 0],
+                    duration: 300,
+                    direction: "alternate",
+                    loop: 2,
+                    easing: "easeInOutQuad",
+                });
+            });
+        }
+
+        // Floating orb animation enhancement
+        const orb = document.querySelector(".footer-orb");
+        if (orb) {
+            anime({
+                targets: orb,
+                opacity: [0.5, 1, 0.5],
+                duration: 4000,
+                direction: "alternate",
+                loop: true,
+                easing: "easeInOutSine",
+            });
+        }
+    });
+</script>
