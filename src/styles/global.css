@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for fixed header */
+}
+
 /* Peace Marker Font */
 @font-face {
   font-family: 'Peace Marker';
