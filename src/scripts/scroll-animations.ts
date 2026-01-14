@@ -29,8 +29,7 @@ class ScrollAnimationController {
         // Observe all elements with scroll animation classes
         const animatableElements = document.querySelectorAll('[data-animate]');
         animatableElements.forEach((el) => {
-            // Set initial state
-            (el as HTMLElement).style.opacity = '0';
+            // Content is visible by default - no opacity hiding
             this.observer.observe(el);
         });
 
@@ -53,56 +52,56 @@ class ScrollAnimationController {
     private animateElement(element: HTMLElement) {
         const animationType = element.dataset.animate;
         const delay = parseInt(element.dataset.delay || '0') / 1000; // Convert to seconds
-        const duration = parseInt(element.dataset.duration || '800') / 1000;
+        const duration = 0.3; // Minimal 300ms duration
 
-        // Define animation configurations
+        // Define minimal animation configurations
         const animations: Record<string, any> = {
             'fade-up': () => animate(element, 
-                { opacity: [0, 1], transform: ['translateY(60px)', 'translateY(0px)'] },
+                { transform: ['translateY(20px)', 'translateY(0px)'] },
                 { duration, delay, easing: 'ease-out' }
             ),
             'fade-down': () => animate(element,
-                { opacity: [0, 1], transform: ['translateY(-60px)', 'translateY(0px)'] },
+                { transform: ['translateY(-20px)', 'translateY(0px)'] },
                 { duration, delay, easing: 'ease-out' }
             ),
             'fade-left': () => animate(element,
-                { opacity: [0, 1], transform: ['translateX(60px)', 'translateX(0px)'] },
+                { transform: ['translateX(20px)', 'translateX(0px)'] },
                 { duration, delay, easing: 'ease-out' }
             ),
             'fade-right': () => animate(element,
-                { opacity: [0, 1], transform: ['translateX(-60px)', 'translateX(0px)'] },
+                { transform: ['translateX(-20px)', 'translateX(0px)'] },
                 { duration, delay, easing: 'ease-out' }
             ),
             'zoom-in': () => animate(element,
-                { opacity: [0, 1], transform: ['scale(0.8)', 'scale(1)'] },
+                { transform: ['scale(0.95)', 'scale(1)'] },
                 { duration, delay, easing: 'ease-out' }
             ),
             'zoom-out': () => animate(element,
-                { opacity: [0, 1], transform: ['scale(1.1)', 'scale(1)'] },
+                { transform: ['scale(1.05)', 'scale(1)'] },
                 { duration, delay, easing: 'ease-out' }
             ),
             'flip-up': () => animate(element,
-                { opacity: [0, 1], transform: ['perspective(1000px) rotateX(90deg) translateY(40px)', 'perspective(1000px) rotateX(0deg) translateY(0px)'] },
-                { duration: duration + 0.2, delay, easing: 'ease-out' }
+                { transform: ['translateY(10px)', 'translateY(0px)'] },
+                { duration, delay, easing: 'ease-out' }
             ),
             'rotate-in': () => animate(element,
-                { opacity: [0, 1], transform: ['rotate(-10deg) scale(0.9)', 'rotate(0deg) scale(1)'] },
-                { duration, delay, easing: spring({ stiffness: 300, damping: 20 }) }
+                { transform: ['scale(0.98)', 'scale(1)'] },
+                { duration, delay, easing: 'ease-out' }
             ),
             'blur-in': () => animate(element,
-                { opacity: [0, 1], filter: ['blur(10px)', 'blur(0px)'], transform: ['translateY(30px)', 'translateY(0px)'] },
+                { transform: ['translateY(10px)', 'translateY(0px)'] },
                 { duration, delay, easing: 'ease-out' }
             ),
             'slide-reveal': () => animate(element,
-                { opacity: [0, 1], transform: ['translateY(100px)', 'translateY(0px)'] },
-                { duration: duration + 0.2, delay, easing: 'ease-out' }
+                { transform: ['translateY(15px)', 'translateY(0px)'] },
+                { duration, delay, easing: 'ease-out' }
             ),
             'bounce-in': () => animate(element,
-                { opacity: [0, 1], transform: ['translateY(80px) scale(0.85)', 'translateY(0px) scale(1)'] },
-                { duration: duration + 0.4, delay, easing: spring({ stiffness: 200, damping: 15 }) }
+                { transform: ['translateY(15px)', 'translateY(0px)'] },
+                { duration, delay, easing: 'ease-out' }
             ),
             'skew-in': () => animate(element,
-                { opacity: [0, 1], transform: ['skewY(6deg) translateY(40px)', 'skewY(0deg) translateY(0px)'] },
+                { transform: ['translateY(10px)', 'translateY(0px)'] },
                 { duration, delay, easing: 'ease-out' }
             )
         };
@@ -110,11 +109,8 @@ class ScrollAnimationController {
         const animFunc = animations[animationType || 'fade-up'];
         if (animFunc) {
             animFunc();
-        } else {
-            // Fallback: Show element without animation
-            element.style.opacity = '1';
-            element.style.transform = 'none';
         }
+        // Content is already visible, no fallback needed
     }
 
     private setupStaggerObservers() {
@@ -139,41 +135,32 @@ class ScrollAnimationController {
 
     private animateStaggerChildren(container: HTMLElement) {
         const children = Array.from(container.querySelectorAll('[data-stagger-item]'));
-        const staggerDelayMs = parseInt(container.dataset.staggerDelay || '100');
+        const staggerDelayMs = 30; // Minimal 30ms stagger
         const animationType = container.dataset.stagger || 'fade-up';
 
-        children.forEach((child) => {
-            (child as HTMLElement).style.opacity = '0';
-        });
+        // Content is visible by default - no opacity hiding
 
         const baseConfig: Record<string, any> = {
             'fade-up': {
-                opacity: [0, 1],
-                transform: ['translateY(50px)', 'translateY(0px)']
+                transform: ['translateY(10px)', 'translateY(0px)']
             },
             'fade-down': {
-                opacity: [0, 1],
-                transform: ['translateY(-50px)', 'translateY(0px)']
+                transform: ['translateY(-10px)', 'translateY(0px)']
             },
             'zoom-in': {
-                opacity: [0, 1],
-                transform: ['scale(0.8)', 'scale(1)']
+                transform: ['scale(0.98)', 'scale(1)']
             },
             'slide-left': {
-                opacity: [0, 1],
-                transform: ['translateX(60px)', 'translateX(0px)']
+                transform: ['translateX(10px)', 'translateX(0px)']
             },
             'slide-right': {
-                opacity: [0, 1],
-                transform: ['translateX(-60px)', 'translateX(0px)']
+                transform: ['translateX(-10px)', 'translateX(0px)']
             },
             'rotate-stagger': {
-                opacity: [0, 1],
-                transform: ['rotate(-15deg) translateY(40px)', 'rotate(0deg) translateY(0px)']
+                transform: ['translateY(10px)', 'translateY(0px)']
             },
             'cascade': {
-                opacity: [0, 1],
-                transform: ['translateY(80px) translateX(-30px) rotate(-5deg)', 'translateY(0px) translateX(0px) rotate(0deg)']
+                transform: ['translateY(10px)', 'translateY(0px)']
             }
         };
 
@@ -183,7 +170,7 @@ class ScrollAnimationController {
             children,
             config,
             {
-                duration: 0.8,
+                duration: 0.2,
                 delay: stagger(staggerDelayMs / 1000),
                 easing: 'ease-out'
             }
@@ -232,54 +219,36 @@ class ScrollAnimationController {
     }
 }
 
-// Image Card Hover Animation with Motion One
+// Image Card Hover Animation - Minimal
 function setupCardAnimations() {
     const cards = document.querySelectorAll('.anime-card');
 
     cards.forEach((card) => {
         const cardEl = card as HTMLElement;
         const image = cardEl.querySelector('.anime-card-image');
-        const content = cardEl.querySelector('.anime-card-content');
-        const overlay = cardEl.querySelector('.anime-card-overlay');
 
         cardEl.addEventListener('mouseenter', () => {
             if (image) {
-                animate(image, { transform: 'scale(1.1)' }, { duration: 0.6, easing: 'ease-out' });
-            }
-
-            if (overlay) {
-                animate(overlay, { opacity: [0.3, 0.7] }, { duration: 0.4, easing: 'ease-out' });
-            }
-
-            if (content) {
-                animate(
-                    content,
-                    { transform: ['translateY(-10px)', 'translateY(0px)'], opacity: [0.8, 1] },
-                    { duration: 0.4, easing: 'ease-out' }
-                );
+                animate(image, { transform: 'scale(1.05)' }, { duration: 0.3, easing: 'ease-out' });
             }
         });
 
         cardEl.addEventListener('mouseleave', () => {
             if (image) {
-                animate(image, { transform: 'scale(1)' }, { duration: 0.6, easing: 'ease-out' });
-            }
-
-            if (overlay) {
-                animate(overlay, { opacity: 0.3 }, { duration: 0.4, easing: 'ease-out' });
+                animate(image, { transform: 'scale(1)' }, { duration: 0.3, easing: 'ease-out' });
             }
         });
     });
 }
 
-// Floating Animation for decorative elements
+// Floating Animation - Minimal
 function setupFloatingElements() {
     const floatingElements = document.querySelectorAll('[data-float]');
 
-    floatingElements.forEach((el, index) => {
+    floatingElements.forEach((el) => {
         const element = el as HTMLElement;
-        const amplitude = parseFloat(element.dataset.floatAmplitude || '20');
-        const duration = (parseInt(element.dataset.floatDuration || '3000') + (index * 200)) / 1000;
+        const amplitude = 10; // Minimal 10px movement
+        const duration = 3; // 3 seconds
 
         animate(
             element,
@@ -294,7 +263,7 @@ function setupFloatingElements() {
     });
 }
 
-// Counter Animation for Stats
+// Counter Animation - Simplified
 function setupCounterAnimations() {
     const counters = document.querySelectorAll('[data-counter]');
 
@@ -304,7 +273,7 @@ function setupCounterAnimations() {
                 if (entry.isIntersecting) {
                     const element = entry.target as HTMLElement;
                     const endValue = element.dataset.counter || '0';
-                    const duration = parseInt(element.dataset.counterDuration || '2000') / 1000;
+                    const duration = 0.8; // Fast 800ms duration
 
                     // Check if it's a number
                     if (!isNaN(parseFloat(endValue))) {
@@ -332,117 +301,25 @@ function setupCounterAnimations() {
     counters.forEach((counter) => counterObserver.observe(counter));
 }
 
-// Text Reveal Animation
+// Text Reveal - Disabled for performance (content already visible)
 function setupTextRevealAnimations() {
-    const textElements = document.querySelectorAll('[data-text-reveal]');
-
-    const textObserver = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const element = entry.target as HTMLElement;
-                    const text = element.textContent || '';
-                    const type = element.dataset.textReveal || 'words';
-
-                    if (type === 'chars') {
-                        // Split into characters
-                        element.innerHTML = text.split('').map((char) =>
-                            `<span class="char-reveal" style="display:inline-block;">${char === ' ' ? '&nbsp;' : char}</span>`
-                        ).join('');
-
-                        const chars = element.querySelectorAll('.char-reveal');
-                        animate(
-                            chars,
-                            { opacity: [0, 1], transform: ['translateY(30px)', 'translateY(0px)'] },
-                            { duration: 0.6, delay: stagger(0.03), easing: 'ease-out' }
-                        );
-                    } else {
-                        // Split into words
-                        element.innerHTML = text.split(' ').map((word) =>
-                            `<span class="word-reveal" style="display:inline-block; margin-right: 0.25em;">${word}</span>`
-                        ).join('');
-
-                        const words = element.querySelectorAll('.word-reveal');
-                        animate(
-                            words,
-                            { 
-                                opacity: [0, 1], 
-                                transform: ['perspective(1000px) rotateX(90deg) translateY(40px)', 'perspective(1000px) rotateX(0deg) translateY(0px)']
-                            },
-                            { duration: 0.8, delay: stagger(0.08), easing: 'ease-out' }
-                        );
-                    }
-
-                    textObserver.unobserve(element);
-                }
-            });
-        },
-        { threshold: 0.3 }
-    );
-
-    textElements.forEach((el) => {
-        (el as HTMLElement).style.opacity = '0';
-        textObserver.observe(el);
-    });
-
-    // Make text visible after animation starts
-    setTimeout(() => {
-        textElements.forEach((el) => {
-            (el as HTMLElement).style.opacity = '1';
-        });
-    }, 100);
+    // Text is visible by default - no complex animations
+    return;
 }
 
-// Line Drawing Animation for SVGs
+// SVG Line Drawing - Disabled for performance
 function setupLineDrawAnimations() {
-    const svgElements = document.querySelectorAll('[data-line-draw]');
-
-    const lineObserver = new IntersectionObserver(
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const svg = entry.target as SVGElement;
-                    const paths = svg.querySelectorAll('path, line, circle, rect, polygon');
-
-                    const pathArray = Array.from(paths).map((path) => {
-                        if (path instanceof SVGGeometryElement) {
-                            const length = path.getTotalLength();
-                            (path as SVGElement).style.strokeDasharray = length.toString();
-                            (path as SVGElement).style.strokeDashoffset = length.toString();
-                            return { element: path, length };
-                        }
-                        return null;
-                    }).filter(Boolean);
-
-                    pathArray.forEach((item, index) => {
-                        if (item) {
-                            setTimeout(() => {
-                                animate(
-                                    item.element,
-                                    { strokeDashoffset: [item.length, 0] },
-                                    { duration: 1.5, easing: 'ease-in-out' }
-                                );
-                            }, index * 100);
-                        }
-                    });
-
-                    lineObserver.unobserve(svg);
-                }
-            });
-        },
-        { threshold: 0.5 }
-    );
-
-    svgElements.forEach((svg) => lineObserver.observe(svg));
+    // SVGs are visible by default - no complex animations
+    return;
 }
 
-// Magnetic Effect for Interactive Elements
+// Magnetic Effect - Minimal movement
 function setupMagneticEffect() {
     const magneticElements = document.querySelectorAll('[data-magnetic]');
 
     magneticElements.forEach((el) => {
         const element = el as HTMLElement;
-        const strength = parseFloat(element.dataset.magnetic || '0.3');
+        const strength = 0.1; // Very minimal strength
 
         element.addEventListener('mousemove', (e) => {
             const rect = element.getBoundingClientRect();
@@ -452,7 +329,7 @@ function setupMagneticEffect() {
             animate(
                 element,
                 { transform: `translate(${x * strength}px, ${y * strength}px)` },
-                { duration: 0.2, easing: 'ease-out' }
+                { duration: 0.15, easing: 'ease-out' }
             );
         });
 
@@ -460,7 +337,7 @@ function setupMagneticEffect() {
             animate(
                 element,
                 { transform: 'translate(0px, 0px)' },
-                { duration: 0.4, easing: spring({ stiffness: 300, damping: 20 }) }
+                { duration: 0.25, easing: 'ease-out' }
             );
         });
     });

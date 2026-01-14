@@ -239,60 +239,12 @@ const contact = {
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        // Animate brand text
+                        // Minimal animations - content already visible
                         if (footerBrand) {
                             animate(
                                 footerBrand,
-                                { opacity: [0, 1], transform: ['translateY(40px)', 'translateY(0px)'] },
-                                { duration: 0.8, easing: 'ease-out' }
-                            );
-                        }
-
-                        // Animate tagline
-                        if (footerTagline) {
-                            animate(
-                                footerTagline,
-                                { opacity: [0, 1], transform: ['translateY(20px)', 'translateY(0px)'] },
-                                { duration: 0.8, delay: 0.2, easing: 'ease-out' }
-                            );
-                        }
-
-                        // Animate nav links with stagger
-                        if (navLinks.length) {
-                            animate(
-                                navLinks,
-                                { opacity: [0, 1], transform: ['translateY(20px)', 'translateY(0px)'] },
-                                { duration: 0.6, delay: stagger(0.08, { start: 0.4 }), easing: 'ease-out' }
-                            );
-                        }
-
-                        // Animate contact items
-                        if (contactItems.length) {
-                            animate(
-                                contactItems,
-                                { 
-                                    opacity: [0, 1], 
-                                    transform: ['translateY(20px) scale(0.9)', 'translateY(0px) scale(1)']
-                                },
-                                { duration: 0.6, delay: stagger(0.1, { start: 0.7 }), easing: 'ease-out' }
-                            );
-                        }
-
-                        // Animate availability badge
-                        if (availabilityBadge) {
-                            animate(
-                                availabilityBadge,
-                                { opacity: [0, 1], transform: ['scale(0.8)', 'scale(1)'] },
-                                { duration: 0.6, delay: 1, easing: spring({ stiffness: 300, damping: 20 }) }
-                            );
-                        }
-
-                        // Animate top line
-                        if (footerLine) {
-                            animate(
-                                footerLine,
-                                { transform: ['scaleX(0)', 'scaleX(1)'] },
-                                { duration: 1.2, delay: 0.3, easing: 'ease-in-out' }
+                                { transform: ['translateY(10px)', 'translateY(0px)'] },
+                                { duration: 0.3, easing: 'ease-out' }
                             );
                         }
 
@@ -304,42 +256,34 @@ const contact = {
         );
 
         if (footer) {
-            // Set initial state
-            [footerBrand, footerTagline, ...navLinks, ...contactItems].forEach(
-                (el) => {
-                    if (el) (el as HTMLElement).style.opacity = "0";
-                },
-            );
-            if (availabilityBadge)
-                (availabilityBadge as HTMLElement).style.opacity = "0";
-            if (footerLine)
-                (footerLine as HTMLElement).style.transform = "scaleX(0)";
-
+            // Content is visible by default - minimal animations only
             observer.observe(footer);
         }
 
-        // Nav link hover animations
+        // Minimal hover animations
         navLinks.forEach((link) => {
             link.addEventListener("mouseenter", () => {
-                animate(link, { transform: 'scale(1.05)' }, { duration: 0.2, easing: 'ease-out' });
+                animate(link, { transform: 'scale(1.02)' }, { duration: 0.15, easing: 'ease-out' });
             });
 
             link.addEventListener("mouseleave", () => {
-                animate(link, { transform: 'scale(1)' }, { duration: 0.2, easing: 'ease-out' });
+                animate(link, { transform: 'scale(1)' }, { duration: 0.15, easing: 'ease-out' });
             });
         });
 
-        // Contact item hover animations
+        // Contact item minimal hover
         contactItems.forEach((item) => {
             const icon = item.querySelector(".contact-icon");
 
             item.addEventListener("mouseenter", () => {
                 if (icon) {
-                    animate(
-                        icon,
-                        { transform: ['rotate(0deg)', 'rotate(10deg)', 'rotate(-10deg)', 'rotate(0deg)'] },
-                        { duration: 0.4, easing: 'ease-in-out' }
-                    );
+                    animate(icon, { transform: 'scale(1.05)' }, { duration: 0.2, easing: 'ease-out' });
+                }
+            });
+            
+            item.addEventListener("mouseleave", () => {
+                if (icon) {
+                    animate(icon, { transform: 'scale(1)' }, { duration: 0.2, easing: 'ease-out' });
                 }
             });
         });
@@ -349,27 +293,15 @@ const contact = {
             backToTop.addEventListener("click", () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-
-            // Hover animation
-            backToTop.addEventListener("mouseenter", () => {
-                const arrow = backToTop.querySelector("svg");
-                if (arrow) {
-                    animate(
-                        arrow,
-                        { transform: ['translateY(-2px)', 'translateY(0px)'] },
-                        { duration: 0.3, direction: 'alternate', repeat: 1, easing: 'ease-in-out' }
-                    );
-                }
-            });
         }
 
-        // Floating orb animation enhancement
+        // Minimal floating orb animation
         const orb = document.querySelector(".footer-orb");
         if (orb) {
             animate(
                 orb,
-                { opacity: [0.5, 1, 0.5] },
-                { duration: 4, direction: 'alternate', repeat: Infinity, easing: 'ease-in-out' }
+                { opacity: [0.5, 0.7, 0.5] },
+                { duration: 3, direction: 'alternate', repeat: Infinity, easing: 'ease-in-out' }
             );
         }
     });
