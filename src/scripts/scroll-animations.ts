@@ -1,4 +1,4 @@
-import anime from 'animejs';
+import anime from 'animejs/lib/anime.es.js';
 
 // Scroll Animation Controller using Anime.js
 class ScrollAnimationController {
