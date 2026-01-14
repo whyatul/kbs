@@ -1,0 +1,155 @@
+---
+const founderInfo = {
+    name: "Akhilesh Tripathi",
+    role: "Founder & Operations Head",
+    description:
+        'I believe in action over words. With hands-on experience across civil work, events, manpower, and operations, I lead with a simple philosophy—<em class="text-white italic font-semibold">Deliver what you promise</em>. Every project I take on is built on trust, executed with precision, and completed on time. My goal is clear: make Kartik Business Solutions the go-to partner for businesses that value reliability and results.',
+};
+
+const companyInfo = {
+    intro: "Kartik Business Solutions is a dynamic, multi-service business solutions provider committed to delivering reliable, end-to-end solutions across diverse industries. As our name suggests, we exist to solve business challenges—in any field, of any scale.",
+    services:
+        "From civil and construction work to event management, manpower, housekeeping, and specialized on-ground solutions, we act as a single, dependable partner for all operational needs.",
+    mission:
+        "Our mission is simple: to make execution easy for our clients by offering a one-stop solution that saves time, reduces coordination hassles, and ensures quality delivery.",
+    unique: "What makes us unique is our flexibility, 24×7 service availability, and strong problem-solving approach. We don't just promise we deliver. Once you work with us, you'll choose us again.",
+};
+
+const milestones = [
+    {
+        icon: "✓",
+        text: "Successfully executed multiple civil, event, and manpower projects",
+    },
+    {
+        icon: "📸",
+        text: "Strong portfolio supported by real on-site photos and client references",
+    },
+    {
+        icon: "👥",
+        text: "Growing team of skilled labour, supervisors, and coordinators",
+    },
+    { icon: "🔄", text: "Consistent repeat work from satisfied clients" },
+];
+---
+
+<section
+    class="relative py-20 md:py-28 lg:py-32 bg-secondary overflow-hidden"
+    id="about"
+>
+    <!-- Top border gradient -->
+    <div
+        class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange-500 to-transparent opacity-30"
+    >
+    </div>
+
+    <div class="max-w-[1400px] mx-auto px-5 md:px-10 lg:px-[60px]">
+        <!-- Section Header -->
+        <div
+            class="text-center max-w-[800px] mx-auto mb-16"
+            data-animate="fade-up"
+        >
+            <span
+                class="inline-block px-5 py-2 bg-orange-500/10 border border-orange-500/20 rounded-full text-sm text-orange-500 uppercase tracking-widest mb-5"
+            >
+                Who We Are
+            </span>
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-5">
+                Building Trust Through<span
+                    class="inline-block px-2 sm:px-3 md:px-4 pt-2 sm:pt-3 md:pt-4 lg:pt-5 pb-1 text-gradient font-peace"
+                    >Performance</span
+                >
+            </h2>
+        </div>
+
+        <!-- About Content Grid -->
+        <div
+            class="grid md:grid-cols-2 gap-6 mb-16"
+            data-stagger="fade-up"
+            data-stagger-delay="150"
+        >
+            <!-- Company Overview -->
+            <div
+                class="bg-[#D02752] border border-white/[0.08] rounded-3xl p-10 transition-all duration-500 hover:border-white/[0.15] hover:-translate-y-1"
+                data-stagger-item
+                data-magnetic="0.08"
+            >
+                <h3 class="text-4xl font-bold mb-4">Our Story</h3>
+                <p class="text-zinc-400 leading-relaxed mb-4">
+                    {companyInfo.intro}
+                </p>
+                <p class="text-zinc-400 leading-relaxed">
+                    From <span class="font-bold text-white">Civil</span>, <span
+                        class="font-bold text-white">Construction Work</span
+                    > to <span class="font-bold text-white"
+                        >Event Management</span
+                    >, <span class="font-bold text-white">Manpower</span>, <span
+                        class="font-bold text-white">Housekeeping</span
+                    >, and <span class="font-bold text-white"
+                        >Specialized On-ground Solutions</span
+                    >, we act as a single, dependable partner for all
+                    operational needs.
+                </p>
+            </div>
+
+            <!-- Mission -->
+            <div
+                class="bg-[#F63049] border border-white/[0.08] rounded-3xl p-10 transition-all duration-500 hover:border-white/[0.15] hover:-translate-y-1"
+                data-stagger-item
+                data-magnetic="0.08"
+            >
+                <h3 class="text-4xl font-bold mb-4">Our Mission</h3>
+                <p class="text-zinc-400 leading-relaxed mb-5">
+                    {companyInfo.mission}
+                </p>
+                <div
+                    class="p-5 bg-orange-500/[0.08] border-l-[3px] border-orange-500 rounded-r-lg"
+                >
+                    <p class="text-white italic">{companyInfo.unique}</p>
+                </div>
+            </div>
+
+            <!-- Founder -->
+            <div
+                class="md:col-span-2 bg-[#8A244B] border border-white/[0.08] rounded-3xl p-10 transition-all duration-500 hover:border-white/[0.15] hover:-translate-y-1"
+                data-stagger-item
+            >
+                <div
+                    class="flex items-center gap-5 mb-6 flex-col sm:flex-row text-center sm:text-left"
+                >
+                    <div>
+                        <h4 class="text-3xl font-peace font-bold mb-1">
+                            {founderInfo.name}
+                        </h4>
+                        <span class="text-orange-500">{founderInfo.role}</span>
+                    </div>
+                </div>
+                <p class="text-zinc-400 leading-relaxed text-lg mb-6">
+                    I believe in action over words. With hands-on experience
+                    across civil work, events, manpower, and operations, I lead
+                    with a simple philosophy <em
+                        class="text-white italic font-semibold"
+                        >Deliver what you promise</em
+                    >. Every project I take on is built on trust, executed with
+                    precision, and completed on time. My goal is clear: make
+                    Kartik Business Solutions the go-to partner for businesses
+                    that value reliability and results.
+                </p>
+                <div class="flex items-start gap-4 p-6 bg-tertiary rounded-xl">
+                    <svg
+                        class="w-6 h-6 text-orange-500/20 shrink-0 mt-1"
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                    >
+                        <path
+                            d="M6 17h3l2-4V7H5v6h3l-2 4zm8 0h3l2-4V7h-6v6h3l-2 4z"
+                        ></path>
+                    </svg>
+                    <p class="text-white italic text-lg">
+                        "Building trust through performance, one project at a
+                        time."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
