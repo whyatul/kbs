@@ -221,24 +221,8 @@ class ScrollAnimationController {
 
 // Image Card Hover Animation - Minimal
 function setupCardAnimations() {
-    const cards = document.querySelectorAll('.anime-card');
-
-    cards.forEach((card) => {
-        const cardEl = card as HTMLElement;
-        const image = cardEl.querySelector('.anime-card-image');
-
-        cardEl.addEventListener('mouseenter', () => {
-            if (image) {
-                animate(image, { transform: 'scale(1.05)' }, { duration: 0.3, easing: 'ease-out' });
-            }
-        });
-
-        cardEl.addEventListener('mouseleave', () => {
-            if (image) {
-                animate(image, { transform: 'scale(1)' }, { duration: 0.3, easing: 'ease-out' });
-            }
-        });
-    });
+    // Card hover animations disabled to prevent first-hover background animation
+    return;
 }
 
 // Floating Animation - Minimal
