@@ -1,50 +1,50 @@
 ---
 const heroImages = [
     { 
-        src: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80",
+        src: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=85",
         alt: "Construction site",
-        position: "top-[15%] left-[3%] lg:left-[5%]",
-        size: "w-28 h-36 sm:w-36 sm:h-44 md:w-44 md:h-56 lg:w-56 lg:h-72 xl:w-64 xl:h-80",
+        position: "top-[12%] left-[2%] md:top-[15%] md:left-[4%] lg:left-[5%] xl:left-[6%]",
+        size: "w-32 h-40 sm:w-40 sm:h-52 md:w-52 md:h-64 lg:w-64 lg:h-80 xl:w-72 xl:h-[22rem]",
         delay: "0s",
-        rotation: "-6deg"
+        rotation: "-5deg"
     },
     { 
-        src: "https://images.unsplash.com/photo-1519741497674-611481863552?w=600&q=80",
+        src: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=85",
         alt: "Event celebration",
-        position: "top-[8%] right-[3%] lg:right-[8%]",
-        size: "w-32 h-24 sm:w-40 sm:h-32 md:w-52 md:h-40 lg:w-64 lg:h-48 xl:w-72 xl:h-56",
+        position: "top-[6%] right-[2%] md:top-[8%] md:right-[4%] lg:right-[6%] xl:right-[8%]",
+        size: "w-36 h-28 sm:w-44 sm:h-36 md:w-56 md:h-44 lg:w-72 lg:h-56 xl:w-80 xl:h-64",
         delay: "0.1s",
         rotation: "4deg"
     },
     { 
-        src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=600&q=80",
+        src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=85",
         alt: "Modern interior",
-        position: "top-[40%] left-[1%] lg:left-[2%]",
-        size: "w-24 h-32 sm:w-32 sm:h-40 md:w-40 md:h-52 lg:w-48 lg:h-64 xl:w-56 xl:h-72",
+        position: "top-[38%] left-[1%] md:top-[40%] md:left-[2%] lg:left-[3%] xl:left-[4%]",
+        size: "w-28 h-36 sm:w-36 sm:h-48 md:w-44 md:h-60 lg:w-56 lg:h-72 xl:w-64 xl:h-80",
         delay: "0.2s",
         rotation: "3deg"
     },
     { 
-        src: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&q=80",
+        src: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=85",
         alt: "Workers team",
-        position: "top-[35%] right-[1%] lg:right-[3%]",
-        size: "w-28 h-40 sm:w-36 sm:h-48 md:w-44 md:h-60 lg:w-52 lg:h-72 xl:w-60 xl:h-80",
+        position: "top-[32%] right-[1%] md:top-[35%] md:right-[2%] lg:right-[3%] xl:right-[4%]",
+        size: "w-32 h-44 sm:w-40 sm:h-56 md:w-48 md:h-68 lg:w-60 lg:h-80 xl:w-68 xl:h-[22rem]",
         delay: "0.15s",
-        rotation: "-5deg"
+        rotation: "-4deg"
     },
     { 
-        src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+        src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85",
         alt: "Cleaning service",
-        position: "bottom-[20%] left-[4%] lg:left-[6%]",
-        size: "w-24 h-28 sm:w-32 sm:h-36 md:w-40 md:h-48 lg:w-48 lg:h-60 xl:w-56 xl:h-68",
+        position: "bottom-[18%] left-[3%] md:bottom-[20%] md:left-[5%] lg:left-[6%] xl:left-[7%]",
+        size: "w-28 h-32 sm:w-36 sm:h-44 md:w-44 md:h-56 lg:w-56 lg:h-68 xl:w-64 xl:h-76",
         delay: "0.25s",
         rotation: "5deg"
     },
     { 
-        src: "https://images.unsplash.com/photo-1513623935135-c896b59073c1?w=600&q=80",
+        src: "https://images.unsplash.com/photo-1513623935135-c896b59073c1?w=800&q=85",
         alt: "Trade show",
-        position: "bottom-[15%] right-[3%] lg:right-[5%]",
-        size: "w-32 h-24 sm:w-40 sm:h-32 md:w-52 md:h-40 lg:w-64 lg:h-48 xl:w-72 xl:h-56",
+        position: "bottom-[12%] right-[2%] md:bottom-[15%] md:right-[4%] lg:right-[5%] xl:right-[7%]",
+        size: "w-36 h-28 sm:w-44 sm:h-36 md:w-56 md:h-44 lg:w-72 lg:h-56 xl:w-80 xl:h-64",
         delay: "0.3s",
         rotation: "-3deg"
     },
@@ -77,11 +77,11 @@ const services = [
         <div class="absolute inset-0 opacity-[0.015] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==')]"></div>
     </div>
 
-    <!-- Floating Images - Hidden on mobile, visible on tablet+ -->
-    <div class="absolute inset-0 z-[1] pointer-events-none hidden lg:block">
+    <!-- Floating Images - Visible on small screens and up, with opacity control -->
+    <div class="absolute inset-0 z-[1] pointer-events-none">
         {heroImages.map((image, index) => (
             <div 
-                class={`hero-image absolute ${image.position} ${image.size} rounded-2xl overflow-hidden shadow-2xl opacity-0 animate-float-in`}
+                class={`hero-image absolute ${image.position} ${image.size} rounded-xl md:rounded-2xl overflow-hidden shadow-xl md:shadow-2xl opacity-40 sm:opacity-50 md:opacity-70 lg:opacity-100 animate-float-in`}
                 style={`animation-delay: ${image.delay}; transform: rotate(${image.rotation});`}
                 data-parallax
                 data-speed={(index % 3) + 1}
@@ -89,11 +89,11 @@ const services = [
                 <img 
                     src={image.src} 
                     alt={image.alt}
-                    class="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                    class="w-full h-full object-cover"
                     loading="lazy"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-                <div class="absolute inset-0 border border-white/10 rounded-2xl"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div class="absolute inset-0 border border-white/10 rounded-xl md:rounded-2xl"></div>
             </div>
         ))}
     </div>
@@ -136,7 +136,7 @@ const services = [
     @keyframes float-in {
         0% {
             opacity: 0;
-            transform: translateY(40px) rotate(var(--rotation, 0deg)) scale(0.8);
+            transform: translateY(30px) rotate(var(--rotation, 0deg)) scale(0.9);
         }
         100% {
             opacity: 1;
@@ -145,41 +145,48 @@ const services = [
     }
     
     .animate-float-in {
-        animation: float-in 0.8s ease-out forwards;
+        animation: float-in 1s ease-out forwards;
     }
     
     @keyframes pulse-slow {
         0%, 100% { opacity: 0.5; transform: scale(1); }
-        50% { opacity: 0.8; transform: scale(1.1); }
+        50% { opacity: 0.8; transform: scale(1.05); }
     }
     
     .animate-pulse-slow {
-        animation: pulse-slow 8s ease-in-out infinite;
-    }
-    
-    @keyframes scroll-mouse {
-        0% { transform: translateY(0); opacity: 1; }
-        50% { transform: translateY(8px); opacity: 0.5; }
-        100% { transform: translateY(0); opacity: 1; }
-    }
-    
-    .animate-scroll-mouse {
-        animation: scroll-mouse 1.5s ease-in-out infinite;
+        animation: pulse-slow 6s ease-in-out infinite;
     }
     
     .hero-image {
-        transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+        transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         pointer-events: auto;
+        will-change: transform;
+    }
+    
+    .hero-image img {
+        transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     
     .hero-image:hover {
         z-index: 50 !important;
-        transform: rotate(0deg) scale(1.08) !important;
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(249, 115, 22, 0.2);
+        transform: rotate(0deg) scale(1.15) !important;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(249, 115, 22, 0.3);
+        opacity: 1 !important;
+    }
+    
+    .hero-image:hover img {
+        transform: scale(1.1);
     }
     
     .service-tag {
         backdrop-filter: blur(8px);
+    }
+    
+    /* Make images more visible on mobile */
+    @media (max-width: 640px) {
+        .hero-image {
+            filter: brightness(1.1);
+        }
     }
 </style>
 
@@ -201,9 +208,9 @@ const services = [
                 
                 // Only animate if in viewport
                 if (rect.top < windowHeight && rect.bottom > 0) {
-                    const yOffset = scrollY * speed * 0.1;
-                    const currentRotation = imgEl.style.transform.match(/rotate\(([^)]+)\)/)?.[1] || '0deg';
-                    imgEl.style.transform = `translateY(${yOffset}px) rotate(${currentRotation})`;
+                    const yOffset = scrollY * speed * 0.08;
+                    const rotation = imgEl.style.transform.match(/rotate\(([^)]+)\)/)?.[1] || '0deg';
+                    imgEl.style.transform = `translateY(${yOffset}px) rotate(${rotation})`;
                 }
             });
             
@@ -218,38 +225,48 @@ const services = [
         }, { passive: true });
     }
     
-    // Mouse move effect for images
-    const heroSection = document.getElementById('hero');
-    const floatingImages = document.querySelectorAll('.hero-image');
-    
-    if (heroSection && floatingImages.length > 0) {
-        heroSection.addEventListener('mousemove', (e) => {
-            const { clientX, clientY } = e;
-            const centerX = window.innerWidth / 2;
-            const centerY = window.innerHeight / 2;
-            
-            const moveX = (clientX - centerX) / centerX;
-            const moveY = (clientY - centerY) / centerY;
-            
-            floatingImages.forEach((image, index) => {
-                const imgEl = image as HTMLElement;
-                const speed = ((index % 3) + 1) * 8;
-                const x = moveX * speed;
-                const y = moveY * speed;
-                const currentRotation = imgEl.style.transform.match(/rotate\(([^)]+)\)/)?.[1] || '0deg';
-                
-                if (!imgEl.matches(':hover')) {
-                    imgEl.style.transform = `translate(${x}px, ${y}px) rotate(${currentRotation})`;
-                }
-            });
-        });
+    // Mouse move effect for images (desktop only)
+    if (window.innerWidth >= 1024) {
+        const heroSection = document.getElementById('hero');
+        const floatingImages = document.querySelectorAll('.hero-image');
         
-        heroSection.addEventListener('mouseleave', () => {
-            floatingImages.forEach((image) => {
-                const imgEl = image as HTMLElement;
-                const currentRotation = imgEl.style.transform.match(/rotate\(([^)]+)\)/)?.[1] || '0deg';
-                imgEl.style.transform = `rotate(${currentRotation})`;
+        if (heroSection && floatingImages.length > 0) {
+            let rafId: number | null = null;
+            
+            heroSection.addEventListener('mousemove', (e) => {
+                if (rafId) return;
+                
+                rafId = requestAnimationFrame(() => {
+                    const { clientX, clientY } = e;
+                    const centerX = window.innerWidth / 2;
+                    const centerY = window.innerHeight / 2;
+                    
+                    const moveX = (clientX - centerX) / centerX;
+                    const moveY = (clientY - centerY) / centerY;
+                    
+                    floatingImages.forEach((image, index) => {
+                        const imgEl = image as HTMLElement;
+                        const speed = ((index % 3) + 1) * 6;
+                        const x = moveX * speed;
+                        const y = moveY * speed;
+                        const rotation = imgEl.style.transform.match(/rotate\(([^)]+)\)/)?.[1] || '0deg';
+                        
+                        if (!imgEl.matches(':hover')) {
+                            imgEl.style.transform = `translate(${x}px, ${y}px) rotate(${rotation})`;
+                        }
+                    });
+                    
+                    rafId = null;
+                });
             });
-        });
+            
+            heroSection.addEventListener('mouseleave', () => {
+                floatingImages.forEach((image) => {
+                    const imgEl = image as HTMLElement;
+                    const rotation = imgEl.style.transform.match(/rotate\(([^)]+)\)/)?.[1] || '0deg';
+                    imgEl.style.transform = `rotate(${rotation})`;
+                });
+            });
+        }
     }
 </script>
