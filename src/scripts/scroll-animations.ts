@@ -1,9 +1,8 @@
-import * as anime from 'animejs';
-
-// Scroll Animation Controller using Anime.js
+// Scroll Animation Controller using dynamic anime.js import
 class ScrollAnimationController {
     private observer: IntersectionObserver;
     private animatedElements: Set<Element> = new Set();
+    private anime: any;
 
     constructor() {
         this.observer = new IntersectionObserver(
@@ -13,7 +12,18 @@ class ScrollAnimationController {
                 rootMargin: '0px 0px -50px 0px'
             }
         );
-        this.init();
+        this.loadAnime();
+    }
+
+    private async loadAnime() {
+        try {
+            const animeModule = await import('animejs');
+            this.anime = animeModule.default || animeModule;
+            this.init();
+        } catch (error) {
+            console.warn('Failed to load anime.js, animations will be disabled');
+            this.init();
+        }
     }
 
     private init() {
@@ -160,8 +170,12 @@ class ScrollAnimationController {
         };
 
         const animConfig = animations[animationType || 'fade-up'];
-        if (animConfig) {
-            anime(animConfig);
+        if (animConfig && this.anime) {
+            this.anime(animConfig);
+        } else if (!this.anime) {
+            // Fallback: Show element without animation
+            element.style.opacity = '1';
+            element.style.transform = 'none';
         }
     }
 
@@ -235,11 +249,22 @@ class ScrollAnimationController {
             }
         };
 
-        anime.default({
+        if (!this.anime) {
+            // Fallback: Show all children without animation
+            children.forEach((child: Element) => {
+                if (child instanceof HTMLElement) {
+                    child.style.opacity = '1';
+                    child.style.transform = 'none';
+                }
+            });
+            return;
+        }
+
+        this.anime({
             targets: children,
             ...baseConfig[animationType],
             duration: 800,
-            delay: anime.default.stagger(staggerDelay)
+            delay: this.anime.stagger(staggerDelay)
         });
     }
 
@@ -297,7 +322,7 @@ function setupCardAnimations() {
 
         cardEl.addEventListener('mouseenter', () => {
             if (image) {
-                anime.default({
+                this.anime({
                     targets: image,
                     scale: 1.1,
                     duration: 600,
@@ -306,7 +331,7 @@ function setupCardAnimations() {
             }
 
             if (overlay) {
-                anime.default({
+                this.anime({
                     targets: overlay,
                     opacity: [0.3, 0.7],
                     duration: 400,
@@ -315,7 +340,7 @@ function setupCardAnimations() {
             }
 
             if (content) {
-                anime.default({
+                this.anime({
                     targets: content,
                     translateY: [-10, 0],
                     opacity: [0.8, 1],
@@ -327,7 +352,7 @@ function setupCardAnimations() {
 
         cardEl.addEventListener('mouseleave', () => {
             if (image) {
-                anime.default({
+                this.anime({
                     targets: image,
                     scale: 1,
                     duration: 600,
@@ -336,7 +361,7 @@ function setupCardAnimations() {
             }
 
             if (overlay) {
-                anime.default({
+                this.anime({
                     targets: overlay,
                     opacity: 0.3,
                     duration: 400,
@@ -356,7 +381,7 @@ function setupFloatingElements() {
         const amplitude = parseFloat(element.dataset.floatAmplitude || '20');
         const duration = parseInt(element.dataset.floatDuration || '3000');
 
-        anime.default({
+        this.anime({
             targets: element,
             translateY: [-amplitude, amplitude],
             duration: duration + (index * 200),
@@ -384,7 +409,7 @@ function setupCounterAnimations() {
                         const obj = { value: 0 };
                         const isFloat = endValue.includes('.');
 
-                        anime.default({
+                        this.anime({
                             targets: obj,
                             value: parseFloat(endValue),
                             duration,
@@ -426,12 +451,12 @@ function setupTextRevealAnimations() {
                             `<span class="char-reveal" style="display:inline-block;">${char === ' ' ? '&nbsp;' : char}</span>`
                         ).join('');
 
-                        anime.default({
+                        this.anime({
                             targets: element.querySelectorAll('.char-reveal'),
                             opacity: [0, 1],
                             translateY: [30, 0],
                             duration: 600,
-                            delay: anime.default.stagger(30),
+                            delay: this.anime.stagger(30),
                             easing: 'easeOutExpo'
                         });
                     } else {
@@ -440,13 +465,13 @@ function setupTextRevealAnimations() {
                             `<span class="word-reveal" style="display:inline-block; margin-right: 0.25em;">${word}</span>`
                         ).join('');
 
-                        anime.default({
+                        this.anime({
                             targets: element.querySelectorAll('.word-reveal'),
                             opacity: [0, 1],
                             translateY: [40, 0],
                             rotateX: [90, 0],
                             duration: 800,
-                            delay: anime.default.stagger(80),
+                            delay: this.anime.stagger(80),
                             easing: 'easeOutExpo'
                         });
                     }
@@ -490,11 +515,11 @@ function setupLineDrawAnimations() {
                         }
                     });
 
-                    anime.default({
+                    this.anime({
                         targets: paths,
                         strokeDashoffset: [anime.setDashoffset, 0],
                         duration: 1500,
-                        delay: anime.default.stagger(100),
+                        delay: this.anime.stagger(100),
                         easing: 'easeInOutQuart'
                     });
 
@@ -521,7 +546,7 @@ function setupMagneticEffect() {
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
 
-            anime.default({
+            this.anime({
                 targets: element,
                 translateX: x * strength,
                 translateY: y * strength,
@@ -531,7 +556,7 @@ function setupMagneticEffect() {
         });
 
         element.addEventListener('mouseleave', () => {
-            anime.default({
+            this.anime({
                 targets: element,
                 translateX: 0,
                 translateY: 0,

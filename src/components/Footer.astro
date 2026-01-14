@@ -221,10 +221,24 @@ const contact = {
 </style>
 
 <script>
-    import * as anime from "animejs";
+    // Dynamic import of anime.js with fallback
+    let anime: any = null;
+    
+    async function loadAnime() {
+        try {
+            const animeModule = await import("animejs");
+            anime = animeModule.default || animeModule;
+            return true;
+        } catch (error) {
+            console.warn("Animation library not loaded, using CSS fallbacks");
+            return false;
+        }
+    }
 
     // Wait for DOM
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", async () => {
+        const animeLoaded = await loadAnime();
+        
         const footer = document.getElementById("footer");
         const backToTop = document.getElementById("back-to-top");
         const navLinks = document.querySelectorAll(".nav-link");
@@ -239,8 +253,18 @@ const contact = {
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
+                        if (!animeLoaded || !anime) {
+                            // Fallback: Just show elements without animation
+                            [footerBrand, footerTagline, ...navLinks as any, ...contactItems as any].forEach((el: any) => {
+                                if (el) el.style.opacity = "1";
+                            });
+                            if (availabilityBadge) (availabilityBadge as HTMLElement).style.opacity = "1";
+                            if (footerLine) (footerLine as HTMLElement).style.transform = "scaleX(1)";
+                            return;
+                        }
+                        
                         // Animate brand text
-                        anime.default({
+                        anime({
                             targets: footerBrand,
                             opacity: [0, 1],
                             translateY: [40, 0],
@@ -249,7 +273,7 @@ const contact = {
                         });
 
                         // Animate tagline
-                        anime.default({
+                        anime({
                             targets: footerTagline,
                             opacity: [0, 1],
                             translateY: [20, 0],
@@ -259,28 +283,28 @@ const contact = {
                         });
 
                         // Animate nav links with stagger
-                        anime.default({
+                        anime({
                             targets: navLinks,
                             opacity: [0, 1],
                             translateY: [20, 0],
                             duration: 600,
-                            delay: anime.default.stagger(80, { start: 400 }),
+                            delay: anime.stagger(80, { start: 400 }),
                             easing: "easeOutExpo",
                         });
 
                         // Animate contact items
-                        anime.default({
+                        anime({
                             targets: contactItems,
                             opacity: [0, 1],
                             translateY: [20, 0],
                             scale: [0.9, 1],
                             duration: 600,
-                            delay: anime.default.stagger(100, { start: 700 }),
+                            delay: anime.stagger(100, { start: 700 }),
                             easing: "easeOutExpo",
                         });
 
                         // Animate availability badge
-                        anime.default({
+                        anime({
                             targets: availabilityBadge,
                             opacity: [0, 1],
                             scale: [0.8, 1],
@@ -290,7 +314,7 @@ const contact = {
                         });
 
                         // Animate top line
-                        anime.default({
+                        anime({
                             targets: footerLine,
                             scaleX: [0, 1],
                             duration: 1200,
@@ -321,76 +345,87 @@ const contact = {
         }
 
         // Nav link hover animations
-        navLinks.forEach((link) => {
-            link.addEventListener("mouseenter", () => {
-                anime.default({
-                    targets: link,
-                    scale: 1.05,
-                    duration: 200,
-                    easing: "easeOutQuad",
+        if (animeLoaded && anime) {
+            navLinks.forEach((link) => {
+                link.addEventListener("mouseenter", () => {
+                    anime({
+                        targets: link,
+                        scale: 1.05,
+                        duration: 200,
+                        easing: "easeOutQuad",
+                    });
                 });
-            });
 
-            link.addEventListener("mouseleave", () => {
-                anime.default({
-                    targets: link,
-                    scale: 1,
-                    duration: 200,
-                    easing: "easeOutQuad",
-                });
-            });
-        });
-
-        // Contact item hover animations
-        contactItems.forEach((item) => {
-            const icon = item.querySelector(".contact-icon");
-
-            item.addEventListener("mouseenter", () => {
-                anime.default({
-                    targets: icon,
-                    rotate: [0, 10, -10, 0],
-                    duration: 400,
-                    easing: "easeInOutQuad",
-                });
-            });
-        });
-
-        // Back to top button
-        if (backToTop) {
-            backToTop.addEventListener("click", () => {
-                // Animate scroll
-                anime.default({
-                    targets: { scrollY: window.scrollY },
-                    scrollY: 0,
-                    duration: 1000,
-                    easing: "easeInOutQuart",
-                    update: function (anim) {
-                        window.scrollTo(
-                            0,
-                            (anim.animations[0] as any).currentValue,
-                        );
-                    },
-                });
-            });
-
-            // Hover animation
-            backToTop.addEventListener("mouseenter", () => {
-                const arrow = backToTop.querySelector("svg");
-                anime.default({
-                    targets: arrow,
-                    translateY: [-2, 0],
-                    duration: 300,
-                    direction: "alternate",
-                    loop: 2,
-                    easing: "easeInOutQuad",
+                link.addEventListener("mouseleave", () => {
+                    anime({
+                        targets: link,
+                        scale: 1,
+                        duration: 200,
+                        easing: "easeOutQuad",
+                    });
                 });
             });
         }
 
+        // Contact item hover animations
+        if (animeLoaded && anime) {
+            contactItems.forEach((item) => {
+                const icon = item.querySelector(".contact-icon");
+
+                item.addEventListener("mouseenter", () => {
+                    anime({
+                        targets: icon,
+                        rotate: [0, 10, -10, 0],
+                        duration: 400,
+                        easing: "easeInOutQuad",
+                    });
+                });
+            });
+        }
+
+        // Back to top button
+        if (backToTop) {
+            backToTop.addEventListener("click", () => {
+                if (animeLoaded && anime) {
+                    // Animate scroll
+                    anime({
+                        targets: { scrollY: window.scrollY },
+                        scrollY: 0,
+                        duration: 1000,
+                        easing: "easeInOutQuart",
+                        update: function (anim) {
+                            window.scrollTo(
+                                0,
+                                (anim.animations[0] as any).currentValue,
+                            );
+                        },
+                    });
+                } else {
+                    // Fallback: Simple scroll
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+
+            // Hover animation
+            if (animeLoaded && anime) {
+                backToTop.addEventListener("mouseenter", () => {
+                    const arrow = backToTop.querySelector("svg");
+                    anime({
+                        targets: arrow,
+                        translateY: [-2, 0],
+                        duration: 300,
+                        direction: "alternate",
+                        loop: 2,
+                        easing: "easeInOutQuad",
+                    });
+                });
+            }
+        }
+
         // Floating orb animation enhancement
         const orb = document.querySelector(".footer-orb");
-        if (orb) {
-            anime.default({
+        if (orb && animeLoaded && anime) {
+            anime({
                 targets: orb,
                 opacity: [0.5, 1, 0.5],
                 duration: 4000,
