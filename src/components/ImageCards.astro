@@ -1,4 +1,11 @@
 ---
+import civilImg from "../assets/img/civil.png";
+import eventImg from "../assets/img/event.png";
+import interiorImg from "../assets/img/interior.png";
+import manpowerImg from "../assets/img/manpower.png";
+import housekeepingImg from "../assets/img/housekeeping.png";
+import customImg from "../assets/img/custom.png";
+
 const projects = [
   {
     id: 1,
@@ -6,7 +13,7 @@ const projects = [
     subtitle: "Building Tomorrow",
     category: "CONSTRUCTION",
     gradient: "from-orange-600/90 via-orange-700/85 to-amber-800/90",
-    image: "/src/assets/img/civil.png",
+    image: civilImg,
     offerings: ["Civil construction", "Repair & renovation", "Structural modifications", "Site supervision"]
   },
   {
@@ -15,7 +22,7 @@ const projects = [
     subtitle: "Memorable Moments",
     category: "EVENTS",
     gradient: "from-purple-600/90 via-indigo-700/85 to-blue-800/90",
-    image: "/src/assets/img/event.png",
+    image: eventImg,
     offerings: ["Corporate events", "Product launches", "Private parties", "On-ground execution"]
   },
   {
@@ -24,7 +31,7 @@ const projects = [
     subtitle: "Aesthetic Spaces",
     category: "INTERIORS",
     gradient: "from-emerald-600/90 via-teal-700/85 to-cyan-800/90",
-    image: "/src/assets/img/interior.png",
+    image: interiorImg,
     offerings: ["Residential interiors", "Commercial interiors", "Space planning", "Turnkey execution"]
   },
   {
@@ -33,7 +40,7 @@ const projects = [
     subtitle: "Skilled Teams",
     category: "STAFFING",
     gradient: "from-rose-600/90 via-pink-700/85 to-fuchsia-800/90",
-    image: "/src/assets/img/manpower.png",
+    image: manpowerImg,
     offerings: ["Skilled & unskilled labour", "Event staff", "Supervisors & helpers"]
   },
   {
@@ -42,7 +49,7 @@ const projects = [
     subtitle: "Pristine Spaces",
     category: "CLEANING",
     gradient: "from-sky-600/90 via-blue-700/85 to-indigo-800/90",
-    image: "/src/assets/img/housekeeping.png",
+    image: housekeepingImg,
     offerings: ["Daily housekeeping", "Deep cleaning", "Post-construction cleaning"]
   },
   {
@@ -51,7 +58,7 @@ const projects = [
     subtitle: "Your Vision, Our Expertise",
     category: "ON-DEMAND",
     gradient: "from-amber-600/90 via-orange-700/85 to-red-800/90",
-    image: "/src/assets/img/custom.png",
+    image: customImg,
     centered: true,
     offerings: ["Specialized projects", "Custom requirements", "Unique solutions"]
   }
@@ -83,7 +90,7 @@ const projects = [
     </div>
 
     <!-- Image Cards Grid -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" data-stagger="zoom-in" data-stagger-delay="100">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" >
       {projects.map((project, index) => (
         <div 
           class="anime-card group relative h-[400px] md:h-[450px] bg-card rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
@@ -103,7 +110,7 @@ const projects = [
           <!-- Image (if exists) -->
           {project.image && (
             <img 
-              src={project.image} 
+              src={project.image.src} 
               alt={project.title}
               class={`absolute left-1/2 -translate-x-1/2 h-[70%] w-auto object-contain z-[5] transition-transform duration-500 group-hover:scale-105 ${project.centered ? 'top-1/2 -translate-y-1/2' : 'bottom-0 object-bottom'}`}
             />
