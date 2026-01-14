@@ -1,11 +1,51 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Values from "../components/Values.astro";
+import ImageCards from "../components/ImageCards.astro";
+import Gallery from "../components/Gallery.astro";
+import Stats from "../components/Stats.astro";
+import FAQ from "../components/FAQ.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	title="Kartik Business Solutions | Name It. We Do It. | One Partner. Every Solution."
+	description="Kartik Business Solutions is a dynamic, multi-service business solutions provider offering civil construction, event management, manpower, housekeeping, demolition, and specialized on-ground solutions. 24×7 availability. One Partner. Every Solution."
+>
+	<Header />
+	<main>
+		<Hero />
+		<About />
+		<ImageCards />
+		<Gallery />
+		<Values />
+		<Stats />
+		<FAQ />
+		<Contact />
+	</main>
+	<Footer />
 </Layout>
+
+<script>
+	// Smooth scroll for anchor links
+	document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+		anchor.addEventListener("click", (e: Event) => {
+			e.preventDefault();
+			const element = e.currentTarget as HTMLAnchorElement;
+			const href = element.getAttribute("href");
+			if (href) {
+				const target = document.querySelector(href);
+				if (target) {
+					target.scrollIntoView({
+						behavior: "smooth",
+						block: "start",
+					});
+				}
+			}
+		});
+	});
+</script>
