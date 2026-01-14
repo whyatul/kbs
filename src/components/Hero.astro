@@ -77,11 +77,11 @@ const services = [
         <div class="absolute inset-0 opacity-[0.015] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PC9maWx0ZXI+PHJlY3Qgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMDAiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iMSIvPjwvc3ZnPg==')]"></div>
     </div>
 
-    <!-- Floating Images - Visible on small screens and up, with opacity control -->
+    <!-- Floating Images - Visible on all screens -->
     <div class="absolute inset-0 z-[1] pointer-events-none">
         {heroImages.map((image, index) => (
             <div 
-                class={`hero-image absolute ${image.position} ${image.size} rounded-xl md:rounded-2xl overflow-hidden shadow-xl md:shadow-2xl opacity-40 sm:opacity-50 md:opacity-70 lg:opacity-100 animate-float-in`}
+                class={`hero-image absolute ${image.position} ${image.size} rounded-xl md:rounded-2xl overflow-hidden shadow-xl md:shadow-2xl animate-float-in`}
                 style={`animation-delay: ${image.delay}; transform: rotate(${image.rotation});`}
                 data-parallax
                 data-speed={(index % 3) + 1}
@@ -92,8 +92,8 @@ const services = [
                     class="w-full h-full object-cover"
                     loading="lazy"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                <div class="absolute inset-0 border border-white/10 rounded-xl md:rounded-2xl"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
+                <div class="absolute inset-0 border border-white/20 rounded-xl md:rounded-2xl"></div>
             </div>
         ))}
     </div>
@@ -161,21 +161,40 @@ const services = [
         transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         pointer-events: auto;
         will-change: transform;
+        opacity: 0.7;
+    }
+    
+    @media (min-width: 768px) {
+        .hero-image {
+            opacity: 0.85;
+        }
+    }
+    
+    @media (min-width: 1024px) {
+        .hero-image {
+            opacity: 1;
+        }
     }
     
     .hero-image img {
         transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        filter: brightness(1);
     }
     
     .hero-image:hover {
         z-index: 50 !important;
         transform: rotate(0deg) scale(1.15) !important;
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(249, 115, 22, 0.3);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 40px rgba(249, 115, 22, 0.4);
         opacity: 1 !important;
     }
     
     .hero-image:hover img {
         transform: scale(1.1);
+        filter: brightness(1.2);
+    }
+    
+    .hero-image:hover .absolute.bg-gradient-to-t {
+        opacity: 0.5;
     }
     
     .service-tag {
