@@ -234,47 +234,63 @@ const { id = "header" } = Astro.props;
     const mobileMenu = document.getElementById("mobile-menu");
     const hamburgerSpans = mobileMenuBtn?.querySelectorAll(".hamburger span");
 
-    mobileMenuBtn?.addEventListener("click", () => {
-        const isActive = mobileMenu?.classList.contains("opacity-100");
+    function closeMenu() {
+        if (!mobileMenu) return;
+        
+        mobileMenu.classList.remove("opacity-100", "visible", "flex", "flex-col");
+        mobileMenu.classList.add("opacity-0", "invisible", "hidden");
+        document.body.style.overflow = "";
+        
+        // Reset hamburger
+        if (hamburgerSpans) {
+            hamburgerSpans[0].style.transform = "";
+            hamburgerSpans[1].style.opacity = "";
+            hamburgerSpans[2].style.transform = "";
+        }
+    }
 
+    function openMenu() {
+        if (!mobileMenu) return;
+        
+        mobileMenu.classList.add("opacity-100", "visible", "flex", "flex-col");
+        mobileMenu.classList.remove("opacity-0", "invisible", "hidden");
+        document.body.style.overflow = "hidden";
+        
+        // Animate hamburger to X
+        if (hamburgerSpans) {
+            hamburgerSpans[0].style.transform = "rotate(45deg) translate(5px, 5px)";
+            hamburgerSpans[1].style.opacity = "0";
+            hamburgerSpans[2].style.transform = "rotate(-45deg) translate(5px, -5px)";
+        }
+    }
+
+    mobileMenuBtn?.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const isActive = mobileMenu?.classList.contains("opacity-100");
         if (isActive) {
-            mobileMenu?.classList.remove("opacity-100", "visible", "flex");
-            mobileMenu?.classList.add("opacity-0", "invisible", "hidden");
-            document.body.classList.remove("menu-open");
-            // Reset hamburger
-            if (hamburgerSpans) {
-                hamburgerSpans[0].style.transform = "";
-                hamburgerSpans[1].style.opacity = "";
-                hamburgerSpans[2].style.transform = "";
-            }
+            closeMenu();
         } else {
-            mobileMenu?.classList.add("opacity-100", "visible", "flex");
-            mobileMenu?.classList.remove("opacity-0", "invisible", "hidden");
-            document.body.classList.add("menu-open");
-            // Animate hamburger to X
-            if (hamburgerSpans) {
-                hamburgerSpans[0].style.transform =
-                    "rotate(45deg) translate(5px, 5px)";
-                hamburgerSpans[1].style.opacity = "0";
-                hamburgerSpans[2].style.transform =
-                    "rotate(-45deg) translate(5px, -5px)";
-            }
+            openMenu();
         }
     });
 
     // Close mobile menu when clicking a link
     const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
     mobileNavLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-            mobileMenu?.classList.remove("opacity-100", "visible", "flex");
-            mobileMenu?.classList.add("opacity-0", "invisible", "hidden");
-            document.body.classList.remove("menu-open");
-            // Reset hamburger
-            if (hamburgerSpans) {
-                hamburgerSpans[0].style.transform = "";
-                hamburgerSpans[1].style.opacity = "";
-                hamburgerSpans[2].style.transform = "";
-            }
+        link.addEventListener("click", (e) => {
+            // Let the navigation happen
+            setTimeout(() => {
+                closeMenu();
+            }, 100);
         });
+    });
+
+    // Close menu when clicking outside
+    mobileMenu?.addEventListener("click", (e) => {
+        if (e.target === mobileMenu) {
+            closeMenu();
+        }
     });
 </script>
