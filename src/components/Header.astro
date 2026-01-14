@@ -43,7 +43,7 @@ const navLinks = [
                     <li>
                         <a
                             href={link.href}
-                            class="px-4 py-2.5 text-sm font-medium text-zinc-400 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/5"
+                            class="nav-link px-4 py-2.5 text-sm font-medium text-zinc-400 hover:text-white transition-colors duration-200 rounded-lg hover:bg-white/5"
                         >
                             {link.label}
                         </a>
@@ -122,9 +122,11 @@ const navLinks = [
     const hamburgerIcon = document.getElementById('hamburgerIcon');
     const closeIcon = document.getElementById('closeIcon');
     const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    const desktopNavLinks = document.querySelectorAll('.nav-link');
     const header = document.getElementById('header');
     
     let isOpen = false;
+    let isNavigating = false;
     
     function openMenu() {
         isOpen = true;
@@ -166,10 +168,20 @@ const navLinks = [
     // Close on backdrop click
     backdrop?.addEventListener('click', closeMenu);
     
-    // Close on link click
+    // Close on link click (mobile)
     mobileNavLinks.forEach(link => {
         link.addEventListener('click', () => {
             closeMenu();
+            isNavigating = true;
+            setTimeout(() => { isNavigating = false; }, 1000);
+        });
+    });
+    
+    // Prevent header hiding on desktop nav click
+    desktopNavLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            isNavigating = true;
+            setTimeout(() => { isNavigating = false; }, 1000);
         });
     });
     
@@ -187,8 +199,8 @@ const navLinks = [
     function updateHeader() {
         const scrollY = window.scrollY;
         
-        // Hide/show on scroll
-        if (scrollY > lastScrollY && scrollY > 100 && !isOpen) {
+        // Hide/show on scroll (but not during navigation)
+        if (scrollY > lastScrollY && scrollY > 100 && !isOpen && !isNavigating) {
             header!.style.transform = 'translateY(-100%)';
         } else {
             header!.style.transform = 'translateY(0)';
