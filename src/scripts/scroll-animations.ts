@@ -235,11 +235,11 @@ class ScrollAnimationController {
             }
         };
 
-        anime({
+        anime.default({
             targets: children,
             ...baseConfig[animationType],
             duration: 800,
-            delay: anime.stagger(staggerDelay)
+            delay: anime.default.stagger(staggerDelay)
         });
     }
 
@@ -297,7 +297,7 @@ function setupCardAnimations() {
 
         cardEl.addEventListener('mouseenter', () => {
             if (image) {
-                anime({
+                anime.default({
                     targets: image,
                     scale: 1.1,
                     duration: 600,
@@ -306,7 +306,7 @@ function setupCardAnimations() {
             }
 
             if (overlay) {
-                anime({
+                anime.default({
                     targets: overlay,
                     opacity: [0.3, 0.7],
                     duration: 400,
@@ -315,7 +315,7 @@ function setupCardAnimations() {
             }
 
             if (content) {
-                anime({
+                anime.default({
                     targets: content,
                     translateY: [-10, 0],
                     opacity: [0.8, 1],
@@ -327,7 +327,7 @@ function setupCardAnimations() {
 
         cardEl.addEventListener('mouseleave', () => {
             if (image) {
-                anime({
+                anime.default({
                     targets: image,
                     scale: 1,
                     duration: 600,
@@ -336,7 +336,7 @@ function setupCardAnimations() {
             }
 
             if (overlay) {
-                anime({
+                anime.default({
                     targets: overlay,
                     opacity: 0.3,
                     duration: 400,
@@ -356,7 +356,7 @@ function setupFloatingElements() {
         const amplitude = parseFloat(element.dataset.floatAmplitude || '20');
         const duration = parseInt(element.dataset.floatDuration || '3000');
 
-        anime({
+        anime.default({
             targets: element,
             translateY: [-amplitude, amplitude],
             duration: duration + (index * 200),
@@ -384,7 +384,7 @@ function setupCounterAnimations() {
                         const obj = { value: 0 };
                         const isFloat = endValue.includes('.');
 
-                        anime({
+                        anime.default({
                             targets: obj,
                             value: parseFloat(endValue),
                             duration,
@@ -426,12 +426,12 @@ function setupTextRevealAnimations() {
                             `<span class="char-reveal" style="display:inline-block;">${char === ' ' ? '&nbsp;' : char}</span>`
                         ).join('');
 
-                        anime({
+                        anime.default({
                             targets: element.querySelectorAll('.char-reveal'),
                             opacity: [0, 1],
                             translateY: [30, 0],
                             duration: 600,
-                            delay: anime.stagger(30),
+                            delay: anime.default.stagger(30),
                             easing: 'easeOutExpo'
                         });
                     } else {
@@ -440,13 +440,13 @@ function setupTextRevealAnimations() {
                             `<span class="word-reveal" style="display:inline-block; margin-right: 0.25em;">${word}</span>`
                         ).join('');
 
-                        anime({
+                        anime.default({
                             targets: element.querySelectorAll('.word-reveal'),
                             opacity: [0, 1],
                             translateY: [40, 0],
                             rotateX: [90, 0],
                             duration: 800,
-                            delay: anime.stagger(80),
+                            delay: anime.default.stagger(80),
                             easing: 'easeOutExpo'
                         });
                     }
@@ -490,11 +490,11 @@ function setupLineDrawAnimations() {
                         }
                     });
 
-                    anime({
+                    anime.default({
                         targets: paths,
                         strokeDashoffset: [anime.setDashoffset, 0],
                         duration: 1500,
-                        delay: anime.stagger(100),
+                        delay: anime.default.stagger(100),
                         easing: 'easeInOutQuart'
                     });
 
@@ -521,7 +521,7 @@ function setupMagneticEffect() {
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
 
-            anime({
+            anime.default({
                 targets: element,
                 translateX: x * strength,
                 translateY: y * strength,
@@ -531,7 +531,7 @@ function setupMagneticEffect() {
         });
 
         element.addEventListener('mouseleave', () => {
-            anime({
+            anime.default({
                 targets: element,
                 translateX: 0,
                 translateY: 0,

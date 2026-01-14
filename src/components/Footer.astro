@@ -240,7 +240,7 @@ const contact = {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         // Animate brand text
-                        anime({
+                        anime.default({
                             targets: footerBrand,
                             opacity: [0, 1],
                             translateY: [40, 0],
@@ -249,7 +249,7 @@ const contact = {
                         });
 
                         // Animate tagline
-                        anime({
+                        anime.default({
                             targets: footerTagline,
                             opacity: [0, 1],
                             translateY: [20, 0],
@@ -259,28 +259,28 @@ const contact = {
                         });
 
                         // Animate nav links with stagger
-                        anime({
+                        anime.default({
                             targets: navLinks,
                             opacity: [0, 1],
                             translateY: [20, 0],
                             duration: 600,
-                            delay: anime.stagger(80, { start: 400 }),
+                            delay: anime.default.stagger(80, { start: 400 }),
                             easing: "easeOutExpo",
                         });
 
                         // Animate contact items
-                        anime({
+                        anime.default({
                             targets: contactItems,
                             opacity: [0, 1],
                             translateY: [20, 0],
                             scale: [0.9, 1],
                             duration: 600,
-                            delay: anime.stagger(100, { start: 700 }),
+                            delay: anime.default.stagger(100, { start: 700 }),
                             easing: "easeOutExpo",
                         });
 
                         // Animate availability badge
-                        anime({
+                        anime.default({
                             targets: availabilityBadge,
                             opacity: [0, 1],
                             scale: [0.8, 1],
@@ -290,7 +290,7 @@ const contact = {
                         });
 
                         // Animate top line
-                        anime({
+                        anime.default({
                             targets: footerLine,
                             scaleX: [0, 1],
                             duration: 1200,
@@ -323,7 +323,7 @@ const contact = {
         // Nav link hover animations
         navLinks.forEach((link) => {
             link.addEventListener("mouseenter", () => {
-                anime({
+                anime.default({
                     targets: link,
                     scale: 1.05,
                     duration: 200,
@@ -332,7 +332,7 @@ const contact = {
             });
 
             link.addEventListener("mouseleave", () => {
-                anime({
+                anime.default({
                     targets: link,
                     scale: 1,
                     duration: 200,
@@ -346,7 +346,7 @@ const contact = {
             const icon = item.querySelector(".contact-icon");
 
             item.addEventListener("mouseenter", () => {
-                anime({
+                anime.default({
                     targets: icon,
                     rotate: [0, 10, -10, 0],
                     duration: 400,
@@ -359,7 +359,7 @@ const contact = {
         if (backToTop) {
             backToTop.addEventListener("click", () => {
                 // Animate scroll
-                anime({
+                anime.default({
                     targets: { scrollY: window.scrollY },
                     scrollY: 0,
                     duration: 1000,
@@ -376,7 +376,7 @@ const contact = {
             // Hover animation
             backToTop.addEventListener("mouseenter", () => {
                 const arrow = backToTop.querySelector("svg");
-                anime({
+                anime.default({
                     targets: arrow,
                     translateY: [-2, 0],
                     duration: 300,
@@ -390,7 +390,7 @@ const contact = {
         // Floating orb animation enhancement
         const orb = document.querySelector(".footer-orb");
         if (orb) {
-            anime({
+            anime.default({
                 targets: orb,
                 opacity: [0.5, 1, 0.5],
                 duration: 4000,
