@@ -1,22 +1,54 @@
+---
+import "../styles/global.css";
+import faviconImage from "../assets/logo/gold_log_KBS.png";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = "Kartik Business Solutions - Name It. We Do It.",
+	description = "Kartik Business Solutions is a dynamic, multi-service business solutions provider offering civil construction, event management, manpower, housekeeping, and specialized on-ground solutions. One Partner. Every Solution.",
+} = Astro.props;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content={description} />
+		<meta
+			name="keywords"
+			content="business solutions, civil construction, event management, manpower, housekeeping, demolition, barricading, interior design, Kartik Business Solutions"
+		/>
+		<meta name="author" content="Kartik Business Solutions" />
+		<link rel="icon" type="image/png" href={faviconImage.src} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+			rel="stylesheet"
+		/>
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:title" content={title} />
+		<meta property="twitter:description" content={description} />
 	</head>
-	<body>
+	<body class="overflow-x-hidden">
 		<slot />
+		<script>
+			import { initScrollAnimations } from "../scripts/scroll-animations";
+			initScrollAnimations();
+		</script>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
