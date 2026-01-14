@@ -1,8 +1,9 @@
-// Scroll Animation Controller using dynamic anime.js import
+// Scroll Animation Controller using Motion One
+import { animate, stagger, spring } from 'motion';
+
 class ScrollAnimationController {
     private observer: IntersectionObserver;
     private animatedElements: Set<Element> = new Set();
-    private anime: any;
 
     constructor() {
         this.observer = new IntersectionObserver(
@@ -12,18 +13,7 @@ class ScrollAnimationController {
                 rootMargin: '0px 0px -50px 0px'
             }
         );
-        this.loadAnime();
-    }
-
-    private async loadAnime() {
-        try {
-            const animeModule = await import('animejs');
-            this.anime = animeModule.default || animeModule;
-            this.init();
-        } catch (error) {
-            console.warn('Failed to load anime.js, animations will be disabled');
-            this.init();
-        }
+        this.init();
     }
 
     private init() {
@@ -62,117 +52,65 @@ class ScrollAnimationController {
 
     private animateElement(element: HTMLElement) {
         const animationType = element.dataset.animate;
-        const delay = parseInt(element.dataset.delay || '0');
-        const duration = parseInt(element.dataset.duration || '800');
+        const delay = parseInt(element.dataset.delay || '0') / 1000; // Convert to seconds
+        const duration = parseInt(element.dataset.duration || '800') / 1000;
 
-        const animations: Record<string, anime.AnimeParams> = {
-            'fade-up': {
-                targets: element,
-                opacity: [0, 1],
-                translateY: [60, 0],
-                duration,
-                delay,
-                easing: 'easeOutExpo'
-            },
-            'fade-down': {
-                targets: element,
-                opacity: [0, 1],
-                translateY: [-60, 0],
-                duration,
-                delay,
-                easing: 'easeOutExpo'
-            },
-            'fade-left': {
-                targets: element,
-                opacity: [0, 1],
-                translateX: [60, 0],
-                duration,
-                delay,
-                easing: 'easeOutExpo'
-            },
-            'fade-right': {
-                targets: element,
-                opacity: [0, 1],
-                translateX: [-60, 0],
-                duration,
-                delay,
-                easing: 'easeOutExpo'
-            },
-            'zoom-in': {
-                targets: element,
-                opacity: [0, 1],
-                scale: [0.8, 1],
-                duration,
-                delay,
-                easing: 'easeOutExpo'
-            },
-            'zoom-out': {
-                targets: element,
-                opacity: [0, 1],
-                scale: [1.1, 1],
-                duration,
-                delay,
-                easing: 'easeOutExpo'
-            },
-            'flip-up': {
-                targets: element,
-                opacity: [0, 1],
-                rotateX: [90, 0],
-                translateY: [40, 0],
-                duration: duration + 200,
-                delay,
-                easing: 'easeOutExpo'
-            },
-            'rotate-in': {
-                targets: element,
-                opacity: [0, 1],
-                rotate: [-10, 0],
-                scale: [0.9, 1],
-                duration,
-                delay,
-                easing: 'easeOutElastic(1, 0.5)'
-            },
-            'blur-in': {
-                targets: element,
-                opacity: [0, 1],
-                filter: ['blur(10px)', 'blur(0px)'],
-                translateY: [30, 0],
-                duration,
-                delay,
-                easing: 'easeOutExpo'
-            },
-            'slide-reveal': {
-                targets: element,
-                opacity: [0, 1],
-                translateY: [100, 0],
-                duration: duration + 200,
-                delay,
-                easing: 'easeOutQuart'
-            },
-            'bounce-in': {
-                targets: element,
-                opacity: [0, 1],
-                translateY: [80, 0],
-                scale: [0.85, 1],
-                duration: duration + 400,
-                delay,
-                easing: 'easeOutElastic(1, 0.6)'
-            },
-            'skew-in': {
-                targets: element,
-                opacity: [0, 1],
-                skewY: [6, 0],
-                translateY: [40, 0],
-                duration,
-                delay,
-                easing: 'easeOutQuart'
-            }
+        // Define animation configurations
+        const animations: Record<string, any> = {
+            'fade-up': () => animate(element, 
+                { opacity: [0, 1], transform: ['translateY(60px)', 'translateY(0px)'] },
+                { duration, delay, easing: 'ease-out' }
+            ),
+            'fade-down': () => animate(element,
+                { opacity: [0, 1], transform: ['translateY(-60px)', 'translateY(0px)'] },
+                { duration, delay, easing: 'ease-out' }
+            ),
+            'fade-left': () => animate(element,
+                { opacity: [0, 1], transform: ['translateX(60px)', 'translateX(0px)'] },
+                { duration, delay, easing: 'ease-out' }
+            ),
+            'fade-right': () => animate(element,
+                { opacity: [0, 1], transform: ['translateX(-60px)', 'translateX(0px)'] },
+                { duration, delay, easing: 'ease-out' }
+            ),
+            'zoom-in': () => animate(element,
+                { opacity: [0, 1], transform: ['scale(0.8)', 'scale(1)'] },
+                { duration, delay, easing: 'ease-out' }
+            ),
+            'zoom-out': () => animate(element,
+                { opacity: [0, 1], transform: ['scale(1.1)', 'scale(1)'] },
+                { duration, delay, easing: 'ease-out' }
+            ),
+            'flip-up': () => animate(element,
+                { opacity: [0, 1], transform: ['perspective(1000px) rotateX(90deg) translateY(40px)', 'perspective(1000px) rotateX(0deg) translateY(0px)'] },
+                { duration: duration + 0.2, delay, easing: 'ease-out' }
+            ),
+            'rotate-in': () => animate(element,
+                { opacity: [0, 1], transform: ['rotate(-10deg) scale(0.9)', 'rotate(0deg) scale(1)'] },
+                { duration, delay, easing: spring({ stiffness: 300, damping: 20 }) }
+            ),
+            'blur-in': () => animate(element,
+                { opacity: [0, 1], filter: ['blur(10px)', 'blur(0px)'], transform: ['translateY(30px)', 'translateY(0px)'] },
+                { duration, delay, easing: 'ease-out' }
+            ),
+            'slide-reveal': () => animate(element,
+                { opacity: [0, 1], transform: ['translateY(100px)', 'translateY(0px)'] },
+                { duration: duration + 0.2, delay, easing: 'ease-out' }
+            ),
+            'bounce-in': () => animate(element,
+                { opacity: [0, 1], transform: ['translateY(80px) scale(0.85)', 'translateY(0px) scale(1)'] },
+                { duration: duration + 0.4, delay, easing: spring({ stiffness: 200, damping: 15 }) }
+            ),
+            'skew-in': () => animate(element,
+                { opacity: [0, 1], transform: ['skewY(6deg) translateY(40px)', 'skewY(0deg) translateY(0px)'] },
+                { duration, delay, easing: 'ease-out' }
+            )
         };
 
-        const animConfig = animations[animationType || 'fade-up'];
-        if (animConfig && this.anime) {
-            this.anime(animConfig);
-        } else if (!this.anime) {
+        const animFunc = animations[animationType || 'fade-up'];
+        if (animFunc) {
+            animFunc();
+        } else {
             // Fallback: Show element without animation
             element.style.opacity = '1';
             element.style.transform = 'none';
@@ -200,72 +138,56 @@ class ScrollAnimationController {
     }
 
     private animateStaggerChildren(container: HTMLElement) {
-        const children = container.querySelectorAll('[data-stagger-item]');
-        const staggerDelay = parseInt(container.dataset.staggerDelay || '100');
+        const children = Array.from(container.querySelectorAll('[data-stagger-item]'));
+        const staggerDelayMs = parseInt(container.dataset.staggerDelay || '100');
         const animationType = container.dataset.stagger || 'fade-up';
 
         children.forEach((child) => {
             (child as HTMLElement).style.opacity = '0';
         });
 
-        const baseConfig: Record<string, anime.AnimeParams> = {
+        const baseConfig: Record<string, any> = {
             'fade-up': {
                 opacity: [0, 1],
-                translateY: [50, 0],
-                easing: 'easeOutExpo'
+                transform: ['translateY(50px)', 'translateY(0px)']
             },
             'fade-down': {
                 opacity: [0, 1],
-                translateY: [-50, 0],
-                easing: 'easeOutExpo'
+                transform: ['translateY(-50px)', 'translateY(0px)']
             },
             'zoom-in': {
                 opacity: [0, 1],
-                scale: [0.8, 1],
-                easing: 'easeOutExpo'
+                transform: ['scale(0.8)', 'scale(1)']
             },
             'slide-left': {
                 opacity: [0, 1],
-                translateX: [60, 0],
-                easing: 'easeOutExpo'
+                transform: ['translateX(60px)', 'translateX(0px)']
             },
             'slide-right': {
                 opacity: [0, 1],
-                translateX: [-60, 0],
-                easing: 'easeOutExpo'
+                transform: ['translateX(-60px)', 'translateX(0px)']
             },
             'rotate-stagger': {
                 opacity: [0, 1],
-                rotate: [-15, 0],
-                translateY: [40, 0],
-                easing: 'easeOutElastic(1, 0.5)'
+                transform: ['rotate(-15deg) translateY(40px)', 'rotate(0deg) translateY(0px)']
             },
             'cascade': {
                 opacity: [0, 1],
-                translateY: [80, 0],
-                translateX: [-30, 0],
-                rotate: [-5, 0],
-                easing: 'easeOutQuart'
+                transform: ['translateY(80px) translateX(-30px) rotate(-5deg)', 'translateY(0px) translateX(0px) rotate(0deg)']
             }
         };
 
-        if (!this.anime) {
-            // Fallback: Show all children without animation
-            children.forEach((child: Element) => {
-                if (child instanceof HTMLElement) {
-                    child.style.opacity = '1';
-                    child.style.transform = 'none';
-                }
-            });
-            return;
-        }
-
-        this.anime({
-            targets: children,
-            ...baseConfig[animationType],
-            duration: 800,
-            delay: this.anime.stagger(staggerDelay)
-        });
+        const config = baseConfig[animationType] || baseConfig['fade-up'];
+        
+        animate(
+            children,
+            config,
+            {
+                duration: 0.8,
+                delay: stagger(staggerDelayMs / 1000),
+                easing: 'ease-out'
+            }
+        );
     }
 
     private setupParallax() {
@@ -310,7 +232,7 @@ class ScrollAnimationController {
     }
 }
 
-// Image Card Hover Animation with Anime.js
+// Image Card Hover Animation with Motion One
 function setupCardAnimations() {
     const cards = document.querySelectorAll('.anime-card');
 
@@ -322,51 +244,29 @@ function setupCardAnimations() {
 
         cardEl.addEventListener('mouseenter', () => {
             if (image) {
-                this.anime({
-                    targets: image,
-                    scale: 1.1,
-                    duration: 600,
-                    easing: 'easeOutQuart'
-                });
+                animate(image, { transform: 'scale(1.1)' }, { duration: 0.6, easing: 'ease-out' });
             }
 
             if (overlay) {
-                this.anime({
-                    targets: overlay,
-                    opacity: [0.3, 0.7],
-                    duration: 400,
-                    easing: 'easeOutQuart'
-                });
+                animate(overlay, { opacity: [0.3, 0.7] }, { duration: 0.4, easing: 'ease-out' });
             }
 
             if (content) {
-                this.anime({
-                    targets: content,
-                    translateY: [-10, 0],
-                    opacity: [0.8, 1],
-                    duration: 400,
-                    easing: 'easeOutQuart'
-                });
+                animate(
+                    content,
+                    { transform: ['translateY(-10px)', 'translateY(0px)'], opacity: [0.8, 1] },
+                    { duration: 0.4, easing: 'ease-out' }
+                );
             }
         });
 
         cardEl.addEventListener('mouseleave', () => {
             if (image) {
-                this.anime({
-                    targets: image,
-                    scale: 1,
-                    duration: 600,
-                    easing: 'easeOutQuart'
-                });
+                animate(image, { transform: 'scale(1)' }, { duration: 0.6, easing: 'ease-out' });
             }
 
             if (overlay) {
-                this.anime({
-                    targets: overlay,
-                    opacity: 0.3,
-                    duration: 400,
-                    easing: 'easeOutQuart'
-                });
+                animate(overlay, { opacity: 0.3 }, { duration: 0.4, easing: 'ease-out' });
             }
         });
     });
@@ -379,16 +279,18 @@ function setupFloatingElements() {
     floatingElements.forEach((el, index) => {
         const element = el as HTMLElement;
         const amplitude = parseFloat(element.dataset.floatAmplitude || '20');
-        const duration = parseInt(element.dataset.floatDuration || '3000');
+        const duration = (parseInt(element.dataset.floatDuration || '3000') + (index * 200)) / 1000;
 
-        this.anime({
-            targets: element,
-            translateY: [-amplitude, amplitude],
-            duration: duration + (index * 200),
-            direction: 'alternate',
-            easing: 'easeInOutSine',
-            loop: true
-        });
+        animate(
+            element,
+            { transform: [`translateY(-${amplitude}px)`, `translateY(${amplitude}px)`] },
+            {
+                duration,
+                direction: 'alternate',
+                easing: 'ease-in-out',
+                repeat: Infinity
+            }
+        );
     });
 }
 
@@ -402,25 +304,22 @@ function setupCounterAnimations() {
                 if (entry.isIntersecting) {
                     const element = entry.target as HTMLElement;
                     const endValue = element.dataset.counter || '0';
-                    const duration = parseInt(element.dataset.counterDuration || '2000');
+                    const duration = parseInt(element.dataset.counterDuration || '2000') / 1000;
 
                     // Check if it's a number
                     if (!isNaN(parseFloat(endValue))) {
-                        const obj = { value: 0 };
                         const isFloat = endValue.includes('.');
+                        const numericEnd = parseFloat(endValue);
 
-                        this.anime({
-                            targets: obj,
-                            value: parseFloat(endValue),
-                            duration,
-                            easing: 'easeOutExpo',
-                            round: isFloat ? 10 : 1,
-                            update: () => {
+                        animate(
+                            (progress) => {
+                                const currentValue = progress * numericEnd;
                                 element.textContent = isFloat
-                                    ? obj.value.toFixed(1)
-                                    : Math.round(obj.value).toString();
-                            }
-                        });
+                                    ? currentValue.toFixed(1)
+                                    : Math.round(currentValue).toString();
+                            },
+                            { duration, easing: 'ease-out' }
+                        );
                     }
 
                     counterObserver.unobserve(element);
@@ -451,29 +350,27 @@ function setupTextRevealAnimations() {
                             `<span class="char-reveal" style="display:inline-block;">${char === ' ' ? '&nbsp;' : char}</span>`
                         ).join('');
 
-                        this.anime({
-                            targets: element.querySelectorAll('.char-reveal'),
-                            opacity: [0, 1],
-                            translateY: [30, 0],
-                            duration: 600,
-                            delay: this.anime.stagger(30),
-                            easing: 'easeOutExpo'
-                        });
+                        const chars = element.querySelectorAll('.char-reveal');
+                        animate(
+                            chars,
+                            { opacity: [0, 1], transform: ['translateY(30px)', 'translateY(0px)'] },
+                            { duration: 0.6, delay: stagger(0.03), easing: 'ease-out' }
+                        );
                     } else {
                         // Split into words
                         element.innerHTML = text.split(' ').map((word) =>
                             `<span class="word-reveal" style="display:inline-block; margin-right: 0.25em;">${word}</span>`
                         ).join('');
 
-                        this.anime({
-                            targets: element.querySelectorAll('.word-reveal'),
-                            opacity: [0, 1],
-                            translateY: [40, 0],
-                            rotateX: [90, 0],
-                            duration: 800,
-                            delay: this.anime.stagger(80),
-                            easing: 'easeOutExpo'
-                        });
+                        const words = element.querySelectorAll('.word-reveal');
+                        animate(
+                            words,
+                            { 
+                                opacity: [0, 1], 
+                                transform: ['perspective(1000px) rotateX(90deg) translateY(40px)', 'perspective(1000px) rotateX(0deg) translateY(0px)']
+                            },
+                            { duration: 0.8, delay: stagger(0.08), easing: 'ease-out' }
+                        );
                     }
 
                     textObserver.unobserve(element);
@@ -507,20 +404,26 @@ function setupLineDrawAnimations() {
                     const svg = entry.target as SVGElement;
                     const paths = svg.querySelectorAll('path, line, circle, rect, polygon');
 
-                    paths.forEach((path) => {
+                    const pathArray = Array.from(paths).map((path) => {
                         if (path instanceof SVGGeometryElement) {
                             const length = path.getTotalLength();
                             (path as SVGElement).style.strokeDasharray = length.toString();
                             (path as SVGElement).style.strokeDashoffset = length.toString();
+                            return { element: path, length };
                         }
-                    });
+                        return null;
+                    }).filter(Boolean);
 
-                    this.anime({
-                        targets: paths,
-                        strokeDashoffset: [anime.setDashoffset, 0],
-                        duration: 1500,
-                        delay: this.anime.stagger(100),
-                        easing: 'easeInOutQuart'
+                    pathArray.forEach((item, index) => {
+                        if (item) {
+                            setTimeout(() => {
+                                animate(
+                                    item.element,
+                                    { strokeDashoffset: [item.length, 0] },
+                                    { duration: 1.5, easing: 'ease-in-out' }
+                                );
+                            }, index * 100);
+                        }
                     });
 
                     lineObserver.unobserve(svg);
@@ -546,23 +449,19 @@ function setupMagneticEffect() {
             const x = e.clientX - rect.left - rect.width / 2;
             const y = e.clientY - rect.top - rect.height / 2;
 
-            this.anime({
-                targets: element,
-                translateX: x * strength,
-                translateY: y * strength,
-                duration: 200,
-                easing: 'easeOutQuad'
-            });
+            animate(
+                element,
+                { transform: `translate(${x * strength}px, ${y * strength}px)` },
+                { duration: 0.2, easing: 'ease-out' }
+            );
         });
 
         element.addEventListener('mouseleave', () => {
-            this.anime({
-                targets: element,
-                translateX: 0,
-                translateY: 0,
-                duration: 400,
-                easing: 'easeOutElastic(1, 0.5)'
-            });
+            animate(
+                element,
+                { transform: 'translate(0px, 0px)' },
+                { duration: 0.4, easing: spring({ stiffness: 300, damping: 20 }) }
+            );
         });
     });
 }
