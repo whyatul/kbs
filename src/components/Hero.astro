@@ -3,48 +3,48 @@ const heroImages = [
     { 
         src: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=90",
         alt: "Construction site",
-        position: "top-[12%] left-[1%] sm:left-[2%] md:left-[3%] lg:left-[4%] xl:left-[5%]",
-        size: "w-32 h-44 sm:w-44 sm:h-56 md:w-56 md:h-72 lg:w-72 lg:h-[22rem] xl:w-80 xl:h-[26rem]",
+        position: "top-[5%] -left-[8%] sm:left-[2%] md:left-[3%] lg:left-[4%] xl:left-[5%]",
+        size: "w-24 h-32 sm:w-44 sm:h-56 md:w-56 md:h-72 lg:w-72 lg:h-[22rem] xl:w-80 xl:h-[26rem]",
         delay: "0.2s",
         rotation: "-4deg"
     },
     { 
         src: "https://images.unsplash.com/photo-1519741497674-611481863552?w=800&q=90",
         alt: "Event celebration",
-        position: "top-[8%] right-[1%] sm:right-[2%] md:right-[3%] lg:right-[5%] xl:right-[6%]",
-        size: "w-36 h-28 sm:w-48 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 xl:w-96 xl:h-72",
+        position: "top-[3%] -right-[5%] sm:right-[2%] md:right-[3%] lg:right-[5%] xl:right-[6%]",
+        size: "w-28 h-20 sm:w-48 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 xl:w-96 xl:h-72",
         delay: "0.3s",
         rotation: "3deg"
     },
     { 
         src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=90",
         alt: "Modern interior",
-        position: "top-[45%] left-[0%] sm:left-[1%] md:left-[2%] lg:left-[3%] xl:left-[4%]",
-        size: "w-28 h-36 sm:w-36 sm:h-48 md:w-48 md:h-64 lg:w-60 lg:h-76 xl:w-72 xl:h-[22rem]",
+        position: "bottom-[25%] -left-[10%] sm:left-[1%] md:left-[2%] lg:left-[3%] xl:left-[4%]",
+        size: "w-20 h-28 sm:w-36 sm:h-48 md:w-48 md:h-64 lg:w-60 lg:h-76 xl:w-72 xl:h-[22rem]",
         delay: "0.4s",
         rotation: "2deg"
     },
     { 
         src: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=90",
         alt: "Workers team",
-        position: "top-[42%] right-[0%] sm:right-[1%] md:right-[2%] lg:right-[3%] xl:right-[4%]",
-        size: "w-32 h-44 sm:w-44 sm:h-56 md:w-56 md:h-72 lg:w-68 lg:h-[22rem] xl:w-76 xl:h-[26rem]",
+        position: "bottom-[20%] -right-[8%] sm:right-[1%] md:right-[2%] lg:right-[3%] xl:right-[4%]",
+        size: "w-24 h-32 sm:w-44 sm:h-56 md:w-56 md:h-72 lg:w-68 lg:h-[22rem] xl:w-76 xl:h-[26rem]",
         delay: "0.35s",
         rotation: "-3deg"
     },
     { 
         src: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=90",
         alt: "Cleaning service",
-        position: "bottom-[10%] left-[2%] sm:left-[3%] md:left-[4%] lg:left-[5%] xl:left-[6%]",
-        size: "w-28 h-32 sm:w-36 sm:h-44 md:w-48 md:h-60 lg:w-60 lg:h-72 xl:w-72 xl:h-88",
+        position: "bottom-[2%] left-[5%] sm:left-[3%] md:left-[4%] lg:left-[5%] xl:left-[6%]",
+        size: "w-20 h-24 sm:w-36 sm:h-44 md:w-48 md:h-60 lg:w-60 lg:h-72 xl:w-72 xl:h-88",
         delay: "0.5s",
         rotation: "4deg"
     },
     { 
         src: "https://images.unsplash.com/photo-1513623935135-c896b59073c1?w=800&q=90",
         alt: "Trade show",
-        position: "bottom-[8%] right-[1%] sm:right-[2%] md:right-[3%] lg:right-[4%] xl:right-[5%]",
-        size: "w-36 h-28 sm:w-48 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 xl:w-96 xl:h-72",
+        position: "bottom-[5%] right-[5%] sm:right-[2%] md:right-[3%] lg:right-[4%] xl:right-[5%]",
+        size: "w-28 h-20 sm:w-48 sm:h-36 md:w-64 md:h-48 lg:w-80 lg:h-60 xl:w-96 xl:h-72",
         delay: "0.55s",
         rotation: "-2deg"
     },
@@ -280,28 +280,88 @@ const services = [
     
     /* ===== MOBILE: FULL VISIBILITY ===== */
     @media (max-width: 640px) {
-        .hero-card:nth-child(n+5) {
+        /* Hide bottom row images on mobile - only show 4 corner images */
+        .hero-card:nth-child(5),
+        .hero-card:nth-child(6) {
             display: none;
         }
         
         .hero-card {
-            opacity: 1 !important;
+            opacity: 0.85 !important;
+            transform: scale(0.9);
+        }
+        
+        /* Reposition for mobile - push images to corners */
+        .hero-card:nth-child(1) {
+            top: 8% !important;
+            left: -15% !important;
+        }
+        
+        .hero-card:nth-child(2) {
+            top: 5% !important;
+            right: -12% !important;
+        }
+        
+        .hero-card:nth-child(3) {
+            bottom: 22% !important;
+            left: -18% !important;
+            top: auto !important;
+        }
+        
+        .hero-card:nth-child(4) {
+            bottom: 18% !important;
+            right: -15% !important;
+            top: auto !important;
         }
         
         .hero-card-inner {
             box-shadow: 
-                0 15px 40px rgba(0, 0, 0, 0.5),
-                0 5px 15px rgba(0, 0, 0, 0.3),
+                0 10px 30px rgba(0, 0, 0, 0.5),
+                0 4px 12px rgba(0, 0, 0, 0.3),
                 inset 0 1px 0 rgba(255, 255, 255, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 1rem;
         }
         
         .hero-card-image {
-            filter: brightness(1.25) saturate(1.2) contrast(1.1);
+            filter: brightness(1.15) saturate(1.1) contrast(1.05);
         }
         
         .hero-card.floating {
             animation: none;
+        }
+        
+        /* Disable hover effects on mobile */
+        .hero-card:hover .hero-card-inner {
+            transform: none;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.5),
+                0 4px 12px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+    }
+    
+    /* Extra small screens - smaller images pushed further out */
+    @media (max-width: 375px) {
+        .hero-card {
+            transform: scale(0.75) !important;
+            opacity: 0.75 !important;
+        }
+        
+        .hero-card:nth-child(1) {
+            left: -22% !important;
+        }
+        
+        .hero-card:nth-child(2) {
+            right: -18% !important;
+        }
+        
+        .hero-card:nth-child(3) {
+            left: -25% !important;
+        }
+        
+        .hero-card:nth-child(4) {
+            right: -22% !important;
         }
     }
     
@@ -454,7 +514,9 @@ const services = [
     
     @media (max-width: 640px) {
         #hero .relative.z-10 {
-            max-width: calc(100vw - 10vw);
+            max-width: 100%;
+            padding-left: 1rem;
+            padding-right: 1rem;
         }
     }
 </style>
